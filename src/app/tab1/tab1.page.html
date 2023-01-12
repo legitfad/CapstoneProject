@@ -13,5 +13,19 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Test"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let item of personal">
+      <ion-icon size="large" id="profile-icon" name="person-circle-sharp"></ion-icon>
+      <ion-label id="profile-name">
+        <h1>{{item.name}}</h1>
+        <h2>Budget Set: {{item.budget}}</h2>
+      </ion-label>
+      <ion-button expand="block" color="secondary">Set Budget</ion-button>
+    </ion-item>
+  </ion-list>
+
+
+  <div id="container">
+    <strong>Personal Information is displayed here</strong>
+  </div>
 </ion-content>

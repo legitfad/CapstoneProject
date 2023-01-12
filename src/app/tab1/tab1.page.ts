@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Personal } from '../shared/models/personal';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  constructor() {}
+  personal: Personal[] = [];
+  constructor() {
+    this.personal = [
+        new Personal('Jason Chan', 750, ''),
+      ];
+  }
 
 }
