@@ -19,8 +19,9 @@
       <ion-label id="profile-name">
         <h1>{{item.name}}</h1>
         <h2>Budget Set: {{item.budget}}</h2>
+        <h2>Reset Date: {{item.resetDate}}</h2>
       </ion-label>
-      <ion-button expand="block" color="secondary">Set Budget</ion-button>
+      <ion-button expand="block" color="secondary" type="submit" (click)="set()">Set Budget</ion-button>
     </ion-item>
   </ion-list>
 

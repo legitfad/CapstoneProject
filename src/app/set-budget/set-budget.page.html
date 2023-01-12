@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Set Budget</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="dismiss()">
+      <ion-icon slot="icon-only" name="close-circle-sharp"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="setBudgetForm">
+    <ion-item>
+      <ion-label>Budget Amount: </ion-label>
+      <ion-input type="number" formControlName=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Reset Date: </ion-label>
+      <ion-input type="date" formControlName=""></ion-input>
+    </ion-item>
+    <ion-button expand="block" color="secondary" type="submit" (click)="set()">
+      Set
+    </ion-button>
+ </form>
+</ion-content>
