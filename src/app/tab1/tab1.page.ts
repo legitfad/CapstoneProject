@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SetBudgetPage } from '../set-budget/set-budget.page';
 import { Personal } from '../shared/models/personal';
+import { PersonalService } from '../shared/services/personal.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,10 +11,8 @@ import { Personal } from '../shared/models/personal';
 })
 export class Tab1Page {
   personal: Personal[] = [];
-  constructor(private modalController: ModalController) {
-    this.personal = [
-        new Personal('Jason Chan', 750, '13-Jan-2023', ''),
-      ];
+  constructor(private modalController: ModalController, private personalService: PersonalService) {
+    this.personal = this.personalService.getPersonal();
   }
   async set() {
     const modal = await this.modalController.create({
@@ -21,5 +20,5 @@ export class Tab1Page {
     cssClass: 'modal-wrapper'
     });
     return await modal.present();
-    }
+  }
 }

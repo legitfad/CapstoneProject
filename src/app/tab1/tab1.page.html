@@ -14,21 +14,16 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let item of personal">
+    <ion-item *ngIf="personal !== null">
       <ion-icon size="large" id="profile-icon" name="person-circle-sharp"></ion-icon>
       <ion-label id="profile-name">
-        <h1>{{item.name}}</h1>
-        <h2>Budget Set: {{item.budget}}</h2>
-        <h2>Reset Date: {{item.resetDate}}</h2>
+        <h1>{{personal[0].name}}</h1>
+        <h2>Budget Set: {{personal[0].budget}}</h2>
+        <h2>Reset Date: {{personal[0].resetDate | date: "dd-MM-yyyy"}}</h2>
       </ion-label>
       <ion-button expand="block" color="secondary" type="submit" (click)="set()">Set Budget</ion-button>
     </ion-item>
   </ion-list>
-
-
-  <div id="container">
-    <strong>Personal Information is displayed here</strong>
-  </div>
 </ion-content>
 
 

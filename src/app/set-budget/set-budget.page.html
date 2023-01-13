@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="setBudgetForm">
+  <form [formGroup]="setBudgetForm" *ngIf="personal !== null">
     <ion-item>
       <ion-label>Budget Amount: </ion-label>
-      <ion-input type="number" formControlName=""></ion-input>
+      <ion-input type="number" formControlName="budget"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Reset Date: </ion-label>
-      <ion-input type="date" formControlName=""></ion-input>
+      <ion-input type="date" formControlName="date"></ion-input>
     </ion-item>
     <ion-button expand="block" color="secondary" type="submit" (click)="set()">
       Set
