@@ -39,7 +39,11 @@ const routes: Routes = [
 		path: '**',
 		redirectTo: 'login',
 		pathMatch: 'full'
-	}
+	},
+  {
+    path: 'reward-page',
+    loadChildren: () => import('./reward-page/reward-page.module').then( m => m.RewardPagePageModule)
+  }
 
 
 ];
