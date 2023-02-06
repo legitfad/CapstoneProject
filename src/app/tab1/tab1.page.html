@@ -15,7 +15,9 @@
 
   <ion-list>
     <ion-item *ngIf="personal !== null">
-      <ion-icon size="large" id="profile-icon" name="person-circle-sharp"></ion-icon>
+      <ion-avatar slot="start">
+        <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+      </ion-avatar>
       <ion-label id="profile-name">
         <h1>{{personal[0].name}}</h1>
         <h2>Budget Set: {{personal[0].budget}}</h2>
@@ -24,6 +26,36 @@
       <ion-button expand="block" color="secondary" type="submit" (click)="set()">Set Budget</ion-button>
     </ion-item>
   </ion-list>
+
+  <ion-content class="ion-padding">
+    <ion-button id="open-modal" expand="block">Personal Expenses</ion-button>
+
+    <ion-modal
+    trigger="open-modal"
+    [initialBreakpoint]="0.25"
+    [breakpoints]="[0, 0.25, 0.5, 0.75, 1]"
+    handleBehavior="cycle"
+  >
+    <ng-template>
+      <ion-content class="ion-padding">
+        <div class="ion-margin-top">
+          <ion-label>
+            <h1>My Personal Expenses</h1>
+          </ion-label>
+        </div>
+        <ion-list>
+          <ion-item *ngFor="let item of expense">
+            <ion-label>
+            <h2>{{item.name}}</h2>
+            <p>Price: ${{item.price}}</p>
+            <p>Date of Expense: {{item.date}}</p>
+            <p>Category: {{item.category}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
 
 
