@@ -24,7 +24,7 @@ export class AddRewardPagePage implements OnInit {
         rewardCost: ['', Validators.required],
         rewardDate: ['', Validators.required],
         rewardDescription: ['', Validators.required],
-        rewardCatergory: ['', Validators.required],
+        rewardCategory: ['', Validators.required],
       });    
 }
       async addReward() {
@@ -34,10 +34,10 @@ export class AddRewardPagePage implements OnInit {
         const rewardCost = this.addRewardForm.value.rewardCost;
         const rewardDate = this.addRewardForm.value.rewardDate;
         const rewardDescription = this.addRewardForm.value.rewardDescription; 
-        const rewardCatergory = this.addRewardForm.value.rewardCatergory; 
+        const rewardCategory = this.addRewardForm.value.rewardCategory; 
 
         this.firestoreService
-        .addReward(rewardName, rewardCost, rewardDate, rewardDescription,rewardCatergory)
+        .addReward(rewardName, rewardCost, rewardDate, rewardDescription, rewardCategory)
         .then(
           () => {
             loading.dismiss().then(() => {
@@ -55,9 +55,6 @@ export class AddRewardPagePage implements OnInit {
 
 }
       
-      
-
-
   ngOnInit() {
   }
 
