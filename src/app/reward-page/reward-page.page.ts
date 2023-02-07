@@ -1,6 +1,9 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { RewardService, rewardUi } from '../services/reward.service';
+//import { ModalPage } from '../modal/modal.page';
+
+
 
 @Component({
   selector: 'app-reward-page',
@@ -67,6 +70,7 @@ export class RewardPagePage implements OnInit {
       await alert.present();
   }
 
+ 
   ngOnInit() {
   }
 
