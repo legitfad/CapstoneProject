@@ -17,7 +17,8 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SetBudgetPageModule,	provideFirebaseApp(() => initializeApp(environment.firebase)),
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SetBudgetPageModule,	
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideAuth(() => getAuth()),
 		provideFirestore(() => getFirestore()),
 		provideStorage(() => getStorage()) ],

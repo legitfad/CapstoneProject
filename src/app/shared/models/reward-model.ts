@@ -4,5 +4,5 @@ export interface rewardUi {
   rewardCost: string;
   rewardDate: string;
   rewardDescription: string;
-  rewardCatergory: string;
+  rewardCategory: string;
 }

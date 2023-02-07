@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
-import { collection, CollectionReference, DocumentData } from 'firebase/firestore';
-import { rewardUi } from '../shared/models/reward-model';
+import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+export interface rewardUi {
+  id?: string;
+  rewardName: string;
+  rewardCost: string;
+  rewardDate: string;
+  rewardDetail: string;
+  rewardCategory: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +17,36 @@ import { rewardUi } from '../shared/models/reward-model';
 
 export class RewardService {
 
-  constructor(private readonly firestore: Firestore) {}
+  constructor(private firestore: Firestore) {}
 
-  addReward(
-    rewardName: string,
-    rewardCost: string,
-    rewardDate: string,
-    rewardDescription: string,
-    rewardCatergory: string
-  ): Promise<void> {
-    return addDoc(collection(this.firestore, "reward"), {
-    rewardName,
-    rewardCost,
-    rewardDate,
-    rewardDescription,
-    rewardCatergory,
-   })
-}
+  getRewards(): Observable<rewardUi[]> {
+    const RewardDocRef = collection(this.firestore, 'reward');
+    return collectionData(RewardDocRef, {idField: 'id'}) as Observable<rewardUi[]>;
+  }
+  getRewardById(id: any): Observable<rewardUi> {
+    const RewardDocRef = doc(this.firestore, `reward/${id}`);
+    return docData(RewardDocRef, { idField: 'id' }) as Observable<rewardUi>;
+  }
 
-}
-function addDoc(arg0: CollectionReference<DocumentData>, arg1: { rewardName: string; rewardCost: string; rewardDate: string; rewardDescription: string; rewardCatergory: string; }): Promise<void> {
-  throw new Error('Function not implemented.');
+  addReward(Reward: rewardUi) {
+    const RewardsRef = collection(this.firestore, 'reward');
+    return addDoc(RewardsRef, Reward);
+  }
+
+  deleteReward(Reward: rewardUi) {
+    const RewardDocRef = doc(this.firestore, `reward/${Reward.id}`);
+    return deleteDoc(RewardDocRef);
+  }
+
+  updateReward(Reward: rewardUi) {
+    const RewardDocRef = doc(this.firestore, `reward/${Reward.id}`);
+    return updateDoc(RewardDocRef, 
+      { rewardName: Reward.rewardName, 
+      rewardCost: Reward.rewardCost , 
+      rewardDate: Reward.rewardDate, 
+      rewardDetail: Reward.rewardDetail, 
+      rewardCategory: Reward.rewardCategory });
+  }
+
 }
 
