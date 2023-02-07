@@ -13,12 +13,12 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { AngularFirestoreCollection, AngularFirestore  } from '@angular/fire/firestore';
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SetBudgetPageModule,	provideFirebaseApp(() => initializeApp(environment.firebase)),
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SetBudgetPageModule,	
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideAuth(() => getAuth()),
 		provideFirestore(() => getFirestore()),
 		provideStorage(() => getStorage()) ],
