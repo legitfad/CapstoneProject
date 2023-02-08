@@ -14,14 +14,14 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngIf="personal !== null">
+    <ion-item *ngFor="let personal of personals">
       <ion-avatar slot="start">
         <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
       </ion-avatar>
       <ion-label id="profile-name">
-        <h1>{{personal[0].name}}</h1>
-        <h2>Budget Set: {{personal[0].budget}}</h2>
-        <h2>Reset Date: {{personal[0].resetDate | date: "dd-MM-yyyy"}}</h2>
+        <h1>{{personal.personalName}}</h1>
+        <h2>Budget Set: {{personal.personalBudget}}</h2>
+        <h2>Reset Date: {{personal.personalResetDate | date: "dd-MM-yyyy"}}</h2>
       </ion-label>
       <ion-button expand="block" color="secondary" type="submit" (click)="set()">Set Budget</ion-button>
     </ion-item>

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SetBudgetPage } from '../set-budget/set-budget.page';
 import { Expense } from '../shared/models/expense';
 import { Personal } from '../shared/models/personal';
-import { PersonalService } from '../shared/services/personal.service';
+import { PersonalService, personalUi } from '../shared/services/personal.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,11 +11,15 @@ import { PersonalService } from '../shared/services/personal.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  personal: Personal[] = []; // For Setting Budget
+  personals: personalUi[] = []; // For Setting Budget
   expense: Expense[] = []; // For Personal Expenses for each Item Bought
 
-  constructor(private modalController: ModalController, private personalService: PersonalService) {
-    this.personal = this.personalService.getPersonal();
+  constructor(private modalController: ModalController, private cd: ChangeDetectorRef, private personalService: PersonalService, ) {
+    this.personalService.getPersonal().subscribe(res => {console.log(res);
+      this.personals = res;
+      }
+    )
+    // this.personal = this.personalService.getPersonal();
 
     this.expense = [
       new Expense('Lenovo Monitor', 'Electronics', 590, '06-02-23'),
