@@ -1,43 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-export interface product {
+export interface productData {
   id?: string;
-  title: string;
-  text: string;
+  productName: string;
+  productDescription: string;
+  productCategory: string;
+  productPrice: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ProductService {
 
   constructor(private firestore: Firestore) { }
 
-  getProduct(): Observable<product[]> {
-    const notesRef = collection(this.firestore, 'product');
-    return collectionData(notesRef, { idField: 'id'}) as Observable<product[]>;
+  getProduct(): Observable<productData[]> {
+    const productsRef = collection(this.firestore, 'product'); //'product' calling database name (Collection)
+    return collectionData(productsRef, { idField: 'id'}) as Observable<productData[]>; //idfeild = product database id
   }
 
-  getProductById(id: any): Observable<product> {
-    const noteDocRef = doc(this.firestore, `product/${id}`);
-    return docData(noteDocRef, { idField: 'id' }) as Observable<product>;
+  getProductById(id: any): Observable<productData> {
+    const productsRef = doc(this.firestore, `product/${id}`); //doc is calling for a single document
+    return docData(productsRef, { idField: 'id' }) as Observable<productData>;
   }
 
-  addProduct(product: product) {
-    const notesRef = collection(this.firestore, 'product');
-    return addDoc(notesRef, product);
+  addProduct(product: productData) {
+    const productsRef = collection(this.firestore, 'product');
+    return addDoc(productsRef, product);
   }
 
-  deleteProduct(product: product) {
-    const noteDocRef = doc(this.firestore, `product/${product.id}`);
-    return deleteDoc(noteDocRef);
+  deleteProduct(product: productData) {
+    const productsRef = doc(this.firestore, `product/${product.id}`);
+    return deleteDoc(productsRef);
   }
 
-  updateNote(product: product) {
-    const noteDocRef = doc(this.firestore, `product/${product.id}`);
-    return updateDoc(noteDocRef, { title: product.title, text: product.text });
+  updateNote(product: productData) {
+    const productsRef = doc(this.firestore, `product/${product.id}`);
+    return updateDoc(productsRef, { productName: product.productName, productDescription: product.productDescription }); //updating the info in your database 
   }
-
 }
