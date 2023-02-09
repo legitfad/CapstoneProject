@@ -4,14 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>   
-    <ion-grid>
-      <ion-row>
+<ion-content>  
+
+   
 
         <ion-item *ngFor="let reward of rewards" >
           <ion-col size="12" width="100%">
             <ion-card>
               <img src="assets\reward-icon\BachaCoffee.JPG" />
+              
               <ion-card-content>
                 <ion-card-title>
                           {{ reward.rewardName }}
@@ -39,12 +40,17 @@
                       <ion-icon name='share'></ion-icon>
                       Exchange
                     </button>
-                  </ion-col>
+                  </ion-col>              
                 </ion-row>
               </ion-card-content>
             </ion-card>
           </ion-col>
         </ion-item>    
-      </ion-row>
-    </ion-grid>
+
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click)="addReward()">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
 </ion-content>

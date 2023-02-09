@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Advertiser Page</ion-title>
+    <ion-title class="ion-text-center">Promotions</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-item *ngFor="let advert of adverts" >
+
+      <ion-card>
+        
+        <ion-card-content>
+          <ion-card-title>
+                    {{ advert.title }}
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+
+  </ion-item>   
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addAds()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+ 
