@@ -47,7 +47,6 @@ const routes: Routes = [
   {
     path: 'exchangemodal',
     loadChildren: () => import('./exchangemodal/exchangemodal.module').then( m => m.ExchangemodalPageModule)
-  }
   },
   {
     path: 'overview',
