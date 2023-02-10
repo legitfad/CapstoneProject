@@ -3,7 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
 
-
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 const routes: Routes = [
   {
     path: '',
@@ -27,30 +28,18 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule), ...canActivate(redirectLoggedInToHome)
+    
   },
   {
-		path: '',
+		path: '**',
 		redirectTo: 'login',
 		pathMatch: 'full'
 	},
   {
     path: 'reward-page',
     loadChildren: () => import('./reward-page/reward-page.module').then( m => m.RewardPagePageModule)
-  },
-  {
-    path: 'overview/:chatid',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
-  },
-  {
-    path: 'overview',
-    loadChildren: () => import('./overview/overview.module').then( m => m.OverviewPageModule)
-  },
-  {
-    path: 'start-group-modal',
-    loadChildren: () => import('./start-group-modal/start-group-modal.module').then( m => m.StartGroupModalPageModule)
   }
-
  
 
 
