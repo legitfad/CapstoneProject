@@ -8,7 +8,7 @@
 
    
 
-        <ion-item *ngFor="let reward of rewards" >
+        <ion-item *ngFor="let reward of rewards" (click)="openReward(reward)">
           <ion-col size="12" width="100%">
             <ion-card>
               <img src="assets\reward-icon\BachaCoffee.JPG" />
