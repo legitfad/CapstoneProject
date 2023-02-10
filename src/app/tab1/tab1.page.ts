@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { SetBudgetPage } from '../set-budget/set-budget.page';
 import { Expense } from '../shared/models/expense';
 import { Personal } from '../shared/models/personal';
-import { PersonalService, personalUi } from '../shared/services/personal.service';
+import { expenseUi, PersonalService, personalUi } from '../shared/services/personal.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,23 +12,18 @@ import { PersonalService, personalUi } from '../shared/services/personal.service
 })
 export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
-  expense: Expense[] = []; // For Personal Expenses for each Item Bought
+  expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
 
-  constructor(private modalController: ModalController, private cd: ChangeDetectorRef, private personalService: PersonalService, ) {
+  constructor(private personalService: PersonalService, private alertCtrl: AlertController, private modalController: ModalController, private cd: ChangeDetectorRef) {
     this.personalService.getPersonal().subscribe(res => {console.log(res);
       this.personals = res;
       }
     )
-    // this.personal = this.personalService.getPersonal();
 
-    this.expense = [
-      new Expense('Lenovo Monitor', 'Electronics', 590, '06-02-23'),
-      new Expense('Razer Keyboard', 'Electronics', 120, '05-01-23'),
-      new Expense('Dyson Hairdryer', 'Home Appliances', 50, '02-03-23'),
-      new Expense('Uniqlo AIRISM T-Shirt', 'Clothes', 10, '10-03-23'),
-      new Expense('Uniqlo Hoodie', 'Clothes', 30, '10-03-23'),
-      new Expense('Uniqlo Jeans', 'Clothes', 25, '10-03-23')
-    ]
+    this.personalService.getExpense().subscribe(res => {console.log(res);
+      this.expenses = res;
+      }
+    )
   }
   async set() {
     const modal = await this.modalController.create({
@@ -36,5 +31,52 @@ export class Tab1Page {
     cssClass: 'modal-wrapper'
     });
     return await modal.present();
+  }
+
+  async addExpense() {
+    const alert = await this.alertCtrl.create({
+      header: 'Add Expense',
+      inputs: [
+        {
+          name: 'expenseName',
+          placeholder: 'Name of Product',
+          type: 'text'
+        },
+        {
+          name: 'expenseCategory',
+          placeholder: 'Category of Product',
+          type: 'text'
+        },
+        {
+          name: 'expensePrice',
+          placeholder: 'Price of Product',
+          type: 'number'
+        },
+        {
+          name: 'expenseDate',
+          placeholder: 'Date of Expense',
+          type: 'text'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }, {
+          text: 'Add',
+          handler: res => {
+            this.personalService.addExpense({ 
+              expenseName: res.expenseName, 
+              expenseCategory: res.expenseCategory,
+              expensePrice: res.expensePrice,
+              expenseDate: res.expenseDate 
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  ngOnInit() {
   }
 }

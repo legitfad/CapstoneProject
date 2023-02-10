@@ -10,6 +10,13 @@ export interface personalUi {
   personalId?: string;
 }
 
+export interface expenseUi {
+  expenseName: string;
+  expenseCategory: string;
+  expensePrice: number;
+  expenseDate: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +43,16 @@ export class PersonalService {
       personalBudget: Personal.personalBudget, 
       personalResetDate: Personal.personalResetDate 
     });
+  }
+
+  getExpense(): Observable<expenseUi[]> {
+    const ExpenseDocRef = collection(this.firestore, 'expense');
+    return collectionData(ExpenseDocRef, {idField: 'id'}) as Observable<expenseUi[]>;
+  }
+
+  addExpense(expense: expenseUi) {
+    const expensesRef = collection(this.firestore, 'expense');
+    return addDoc(expensesRef, expense);
   }
 
   // set(p: Personal) {
