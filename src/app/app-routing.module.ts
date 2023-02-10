@@ -32,7 +32,7 @@ const routes: Routes = [
     
   },
   {
-		path: '**',
+		path: '',
 		redirectTo: 'login',
 		pathMatch: 'full'
 	},
@@ -48,6 +48,19 @@ const routes: Routes = [
     path: 'exchangemodal',
     loadChildren: () => import('./exchangemodal/exchangemodal.module').then( m => m.ExchangemodalPageModule)
   }
+  },
+  {
+    path: 'overview',
+    loadChildren: () => import('./overview/overview.module').then( m => m.OverviewPageModule)
+  },
+  {
+    path: 'start-group-modal',
+    loadChildren: () => import('./start-group-modal/start-group-modal.module').then( m => m.StartGroupModalPageModule)
+  },
+  {
+    path: 'overview/:chatid',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
 
 ];
 @NgModule({

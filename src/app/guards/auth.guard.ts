@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
         if (user) {
           resolve(true);
         } else {
-          this.router.navigateByUrl('/', { replaceUrl: true });
+          this.router.navigateByUrl('/overview', { replaceUrl: true });
  
           const toast = await this.toastCtrl.create({
             message: 'Your session has expired',

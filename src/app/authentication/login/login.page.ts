@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
       console.log(user);
       
       loading.dismiss();
-      this.router.navigateByUrl('/', { replaceUrl: true });
+      this.router.navigateByUrl('/overview', { replaceUrl: true });
     }, async err => {
       await loading.dismiss();
  
