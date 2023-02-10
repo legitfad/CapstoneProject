@@ -1,7 +1,7 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { RewardService, rewardUi } from '../services/reward.service';
-//import { ModalPage } from '../modal/modal.page';
+import { ModalPage } from '../modal/modal.page';
 
 
 
@@ -23,7 +23,7 @@ export class RewardPagePage implements OnInit {
 
     async addReward() {
     const alert = await this.alertCtrl.create({
-      header: 'Add Note',
+      header: 'Add Reward',
       inputs: [
         {
           name: 'rewardName',
@@ -70,7 +70,17 @@ export class RewardPagePage implements OnInit {
       await alert.present();
   }
 
- 
+  async openReward(reward: rewardUi) {
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps: { id: reward.id },
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.8
+    });
+
+    await modal.present();
+  }
+  
   ngOnInit() {
   }
 

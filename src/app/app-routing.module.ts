@@ -39,6 +39,10 @@ const routes: Routes = [
   {
     path: 'reward-page',
     loadChildren: () => import('./reward-page/reward-page.module').then( m => m.RewardPagePageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   }
 
 ];
