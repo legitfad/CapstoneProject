@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
  
     this.authSvc.signup(this.credentialsForm.value).then(_ => {
       loading.dismiss();
-      this.router.navigateByUrl('/', { replaceUrl: true });
+      this.router.navigateByUrl('/overview', { replaceUrl: true });
     }, async err => {
       await loading.dismiss();
  
