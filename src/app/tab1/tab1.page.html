@@ -51,6 +51,9 @@
             <p>Date of Expense: {{expense.expenseDate}}</p>
             <p>Category: {{expense.expenseCategory}}</p>
             </ion-label>
+            <ion-button slot="end" name="trash-bin" (click)="updateExpense()">Update</ion-button>
+            <br>
+            <ion-button slot="end" name="trash-bin" (click)="deleteExpense(expense)">Delete</ion-button>
           </ion-item>
         </ion-list>
       </ion-content>

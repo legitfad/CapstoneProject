@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { SetBudgetPage } from '../set-budget/set-budget.page';
 import { Expense } from '../shared/models/expense';
 import { Personal } from '../shared/models/personal';
@@ -13,8 +13,10 @@ import { expenseUi, PersonalService, personalUi } from '../shared/services/perso
 export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
+  expense: Expense = null;
+  @Input() id: string;
 
-  constructor(private personalService: PersonalService, private alertCtrl: AlertController, private modalController: ModalController, private cd: ChangeDetectorRef) {
+  constructor(private personalService: PersonalService, private alertCtrl: AlertController, private modalController: ModalController, private toastCtrl: ToastController, private cd: ChangeDetectorRef) {
     this.personalService.getPersonal().subscribe(res => {console.log(res);
       this.personals = res;
       }
@@ -77,6 +79,20 @@ export class Tab1Page {
     });
     await alert.present();
   }
+
+  async deleteExpense(expense: expenseUi) {
+    this.personalService.deleteExpense(expense);
+  }
+
+  async updateExpense() {
+    await this.personalService.updateExpense(this.expense);
+    const toast = await this.toastCtrl.create({
+      message: 'Expense updated!',
+      duration: 2000
+    });
+    toast.present
+  }
+
   ngOnInit() {
   }
 }
