@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'exchangemodal',
+    loadChildren: () => import('./exchangemodal/exchangemodal.module').then( m => m.ExchangemodalPageModule)
   }
 
 ];

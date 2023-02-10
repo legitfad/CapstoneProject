@@ -8,10 +8,10 @@
 
    
 
-        <ion-item *ngFor="let reward of rewards" (click)="openReward(reward)">
+        <ion-item *ngFor="let reward of rewards" >
           <ion-col size="12" width="100%">
             <ion-card>
-              <img src="assets\reward-icon\BachaCoffee.JPG" />
+              <img src="assets\reward-icon\BachaCoffee.JPG" (click)="openReward(reward)"/>
               
               <ion-card-content>
                 <ion-card-title>
@@ -22,21 +22,22 @@
                 </p>
 
                 <ion-row no-padding>
-                  <ion-col>
-                    <button ion-button clear small color="danger" icon-start>
+                  <ion-col >
+                    <label icon-start >
                       <ion-icon name='star'></ion-icon>
                     {{ reward.rewardCategory }}
-                    </button>
+                    </label>
                   </ion-col>
 
                   <ion-col text-center>
-                    <button ion-button clear small color="danger" icon-start>
+                    <label icon-start >
                       $ {{ reward.rewardCost}}
-                    </button>
+                    </label>
 
                   </ion-col>
                   <ion-col text-right>
-                    <button ion-button clear small color="danger" icon-start>
+                    <button ion-button clear small color="danger" icon-start class="label-bold" 
+                    (click)="exchangeReward(reward)"> 
                       <ion-icon name='share'></ion-icon>
                       Exchange
                     </button>
