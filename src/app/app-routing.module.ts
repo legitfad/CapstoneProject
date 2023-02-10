@@ -23,16 +23,12 @@ const routes: Routes = [
     loadChildren: () => import('./add-product-page/add-product-page.module').then( m => m.AddProductPagePageModule)
   },
   {
-    path: 'add-advert-page',
-    loadChildren: () => import('./add-advert-page/add-advert-page.module').then( m => m.AddAdvertPagePageModule)
-  },
-  {
     path: 'advertiser-page',
     loadChildren: () => import('./advertiser-page/advertiser-page.module').then( m => m.AdvertiserPagePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule), ...canActivate(redirectLoggedInToHome)
+    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule), ...canActivate(redirectLoggedInToHome)
     
   },
   {

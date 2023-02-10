@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddAdvertPagePage } from './add-advert-page.page';
+import { StartGroupModalPage } from './start-group-modal.page';
 
-describe('AddAdvertPagePage', () => {
-  let component: AddAdvertPagePage;
-  let fixture: ComponentFixture<AddAdvertPagePage>;
+describe('StartGroupModalPage', () => {
+  let component: StartGroupModalPage;
+  let fixture: ComponentFixture<StartGroupModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddAdvertPagePage ],
+      declarations: [ StartGroupModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddAdvertPagePage);
+    fixture = TestBed.createComponent(StartGroupModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

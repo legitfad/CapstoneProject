@@ -1,15 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    <ion-button slot="start" [routerLink]="['/advertiser-page']">
+      Advertiser Page
+  </ion-button>
 
     <ion-title class="ion-text-center">Promotions</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button fill="clear">
-        <ion-icon slot="icon-only" name="cart" padding=10px></ion-icon>
-      </ion-button>
+      
     </ion-buttons>
 
   </ion-toolbar>
@@ -17,7 +15,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-header>
-
+    <ion-button fill="clear">
+      <ion-icon slot="icon-only" name="chatbubbles-outline" padding=10px [routerLink]="['/overview']"></ion-icon>
+    </ion-button>
       <ion-card>
         <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
         <ion-card-header>
