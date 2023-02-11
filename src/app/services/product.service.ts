@@ -40,7 +40,7 @@ export class ProductService {
     return deleteDoc(productsRef);
   }
 
-  updateNote(product: productData) {
+  updateProduct(product: productData) {
     const productsRef = doc(this.firestore, `product/${product.id}`);
     return updateDoc(productsRef, { productName: product.productName, productDescription: product.productDescription }); //updating the info in your database 
   }

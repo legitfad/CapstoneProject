@@ -63,7 +63,11 @@ const routes: Routes = [
   {
     path: 'overview/:chatid',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },  {
+    path: 'modal-product',
+    loadChildren: () => import('./modal-product/modal-product.module').then( m => m.ModalProductPageModule)
   },
+
 
 ];
 @NgModule({

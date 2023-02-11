@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { productData, ProductService } from '../services/product.service';
-import { ModalPage } from '../modal/modal.page';
+import { ModalProductPage } from '../modal-product/modal-product.page';
 
 @Component({
   selector: 'app-add-product-page',
@@ -13,7 +13,7 @@ export class AddProductPagePage implements OnInit {
 
   products: productData[] = [];
 
-  constructor(private ProductService: ProductService, private alertCtrl: AlertController) { 
+  constructor(private ProductService: ProductService, private alertCtrl: AlertController, private modalCtrl: ModalController) { 
     this.ProductService.getProduct().subscribe(res => {
       console.log(res);
       this.products = res;
@@ -63,6 +63,17 @@ export class AddProductPagePage implements OnInit {
       ]
     });
       await alert.present();
+  }
+
+  async openProduct(product: productData) {
+    const modal = await this.modalCtrl.create({
+      component: ModalProductPage,
+      componentProps: { id: product.id },
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.8
+    });
+
+    await modal.present();
   }
 
 

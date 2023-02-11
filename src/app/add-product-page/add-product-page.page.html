@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-product-page</ion-title>
+    <ion-title>Add Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -39,7 +39,7 @@
             </ion-col>
 
             <ion-col text-right>
-              <button ion-button clear small color="danger" icon-start class="label-bold">
+              <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openProduct(product)">
                 <ion-icon name='build'></ion-icon>
                 Edit
             </button>

@@ -1,6 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
-import { RewardService, rewardUi } from '../services/reward.service';
 import { ModalController, ToastController } from '@ionic/angular';
+import { RewardService, rewardUi } from '../services/reward.service';
 
 @Component({
   selector: 'app-modal',
@@ -19,6 +19,7 @@ export class ModalPage implements OnInit {
       this.reward = res;
     });
   }
+
   async deleteReward() {
     await this.dataService.deleteReward(this.reward)
     this.modalCtrl.dismiss();
