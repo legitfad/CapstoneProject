@@ -1,6 +1,9 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { RewardService, rewardUi } from '../services/reward.service';
+import { ModalPage } from '../modal/modal.page';
+
+
 
 @Component({
   selector: 'app-reward-page',
@@ -20,7 +23,7 @@ export class RewardPagePage implements OnInit {
 
     async addReward() {
     const alert = await this.alertCtrl.create({
-      header: 'Add Note',
+      header: 'Add Reward',
       inputs: [
         {
           name: 'rewardName',
@@ -30,22 +33,24 @@ export class RewardPagePage implements OnInit {
         {
           name: 'rewardCost',
           placeholder: 'Reward Cost',
-          type: 'textarea'
+          type: 'text'
         },
         {
-          name: 'rewardDate',
-          placeholder: 'Reward Date',
-          type: 'textarea'
+          name: 'rewardImage',
+          placeholder: 'Reward Image URL',
+          type: 'text'
         },
-        {
-          name: 'rewardDetail',
-          placeholder: 'Reward Detail',
-          type: 'textarea'
-        },
+       
         {
           name: 'rewardCategory',
           placeholder: 'Reward Category',
-          type: 'textarea'
+          type: 'text'
+        },
+
+        {
+        name: 'rewardDetail',
+        placeholder: 'Reward Detail',
+        type: 'textarea'
         }
       ],
       buttons: [
@@ -57,7 +62,7 @@ export class RewardPagePage implements OnInit {
           handler: res => {
             this.RewardService.addReward( { rewardName: res.rewardName, 
               rewardCost: res.rewardCost , 
-              rewardDate: res.rewardDate, 
+              rewardImage: res.rewardImage, 
               rewardDetail: res.rewardDetail, 
               rewardCategory: res.rewardCategory });
                   }
@@ -67,6 +72,28 @@ export class RewardPagePage implements OnInit {
       await alert.present();
   }
 
+  async openReward(reward: rewardUi) {
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps: { id: reward.id },
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.8
+    });
+
+    await modal.present();
+  }
+
+  async exchangeReward(reward: rewardUi) {
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps: { id: reward.id },
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.8
+    });
+
+    await modal.present();
+  }
+  
   ngOnInit() {
   }
 

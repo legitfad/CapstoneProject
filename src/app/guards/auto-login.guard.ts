@@ -15,7 +15,7 @@ export class AutoLoginGuard implements CanActivate {
         if (user) {
           this.router.navigateByUrl('/overview', { replaceUrl: true});
           reject(false);
-        } else {
+        } else { 
           resolve(true);
         }
       })

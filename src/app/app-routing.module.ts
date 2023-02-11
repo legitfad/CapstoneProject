@@ -3,12 +3,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
 
-
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule), 
-    // ...canActivate(redirectUnauthorizedToLogin)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule), ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'set-budget/:id',
@@ -28,7 +28,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./authentication/login/login.module').then( m => m.LoginPageModule), ...canActivate(redirectLoggedInToHome)
+    
   },
   {
 		path: '',
@@ -40,8 +41,12 @@ const routes: Routes = [
     loadChildren: () => import('./reward-page/reward-page.module').then( m => m.RewardPagePageModule)
   },
   {
-    path: 'overview/:chatid',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'exchangemodal',
+    loadChildren: () => import('./exchangemodal/exchangemodal.module').then( m => m.ExchangemodalPageModule)
   },
   {
     path: 'overview',
@@ -50,10 +55,11 @@ const routes: Routes = [
   {
     path: 'start-group-modal',
     loadChildren: () => import('./start-group-modal/start-group-modal.module').then( m => m.StartGroupModalPageModule)
-  }
-
- 
-
+  },
+  {
+    path: 'overview/:chatid',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },
 
 ];
 @NgModule({

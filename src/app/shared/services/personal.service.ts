@@ -10,11 +10,20 @@ export interface personalUi {
   personalId?: string;
 }
 
+export interface expenseUi {
+  id?: string;
+  expenseName: string;
+  expenseCategory: string;
+  expensePrice: number;
+  expenseDate: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalService {
   personal: Personal[] = [];
+  expense: expenseUi[] = [];
   FirebaseId = "IHHnse2sBb7SOo91BrFF";
 
   constructor(private firestore: Firestore) { 
@@ -38,6 +47,27 @@ export class PersonalService {
     });
   }
 
+  getExpense(): Observable<expenseUi[]> {
+    const ExpenseDocRef = collection(this.firestore, 'expense');
+    return collectionData(ExpenseDocRef, {idField: 'id'}) as Observable<expenseUi[]>;
+  }
+
+  addExpense(expense: expenseUi) {
+    const expensesRef = collection(this.firestore, 'expense');
+    return addDoc(expensesRef, expense);
+  }
+
+  deleteExpense(expense: expenseUi) {
+    const index = this.expense.findIndex(item => item.id == expense.id);
+    if (index >= 0) {
+      this.expense.splice(index, 1);
+    }
+  }
+
+  updateExpense(expense: expenseUi) {
+    const expenseDocRef = doc(this.firestore, `expense/${expense.id}`);
+    return updateDoc(expenseDocRef, { name: expense.expenseName, category: expense.expenseCategory, price: expense.expensePrice, date: expense.expenseDate });
+  }
   // set(p: Personal) {
   //   const index = this.personal.findIndex(item => item.id == p.id);
   //   const pers = this.personal[0];

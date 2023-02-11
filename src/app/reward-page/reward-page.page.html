@@ -5,42 +5,50 @@
 </ion-header>
 
 <ion-content>  
-
-   
-
         <ion-item *ngFor="let reward of rewards" >
           <ion-col size="12" width="100%">
             <ion-card>
-              <img src="assets\reward-icon\BachaCoffee.JPG" />
-              
+              <img src="{{ reward.rewardImage }}" class="image-size"/>
               <ion-card-content>
-                <ion-card-title>
-                          {{ reward.rewardName }}
+                <ion-card-title >
+                          {{ reward.rewardName }} 
                 </ion-card-title>
                 <p>
                           {{ reward.rewardDetail }}
                 </p>
 
                 <ion-row no-padding>
-                  <ion-col>
-                    <button ion-button clear small color="danger" icon-start>
-                      <ion-icon name='star'></ion-icon>
+                  <ion-col >
+                    <label icon-start>
+                      <ion-icon name='apps'></ion-icon>
                     {{ reward.rewardCategory }}
-                    </button>
+                    </label>
                   </ion-col>
 
                   <ion-col text-center>
-                    <button ion-button clear small color="danger" icon-start>
+                    <label icon-start >
+                      <ion-icon name='cash'></ion-icon>
                       $ {{ reward.rewardCost}}
-                    </button>
+                    </label>
 
                   </ion-col>
                   <ion-col text-right>
-                    <button ion-button clear small color="danger" icon-start>
+                    <button ion-button clear small color="danger" icon-start class="label-bold" 
+                    (click)="exchangeReward(reward)"> 
                       <ion-icon name='share'></ion-icon>
                       Exchange
                     </button>
-                  </ion-col>              
+                  </ion-col>
+                  
+                  <ion-col text-right>
+                    <button ion-button clear small color="danger" icon-start class="label-bold" 
+                    (click)="openReward(reward)">
+                      <ion-icon name='build'></ion-icon>
+                      Edit
+                    </button>
+                  </ion-col>
+                  
+
                 </ion-row>
               </ion-card-content>
             </ion-card>

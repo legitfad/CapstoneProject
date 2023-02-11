@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Reward Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="reward">
+    <ion-item>
+      <ion-label position="stacked">Reward Name</ion-label>
+      <ion-input [(ngModel)]="reward.rewardName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Reward Category</ion-label>
+      <ion-input [(ngModel)]="reward.rewardCategory" rows="8"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Reward Cost</ion-label>
+      <ion-input [(ngModel)]="reward.rewardCost" rows="8"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Reward Image</ion-label>
+      <ion-input [(ngModel)]="reward.rewardImage" rows="8"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Reward Details</ion-label>
+      <ion-textarea [(ngModel)]="reward.rewardDetail" rows="8"></ion-textarea>
+    </ion-item>
+
+  </div>
+
+  <ion-button expand="block" color="success" (click)="updateReward()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Update
+  </ion-button>
+
+  <ion-button expand="block" color="danger" (click)="deleteReward()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Delete
+  </ion-button>
+
+</ion-content>

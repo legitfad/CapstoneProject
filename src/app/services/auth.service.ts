@@ -45,7 +45,7 @@ export class AuthService {
   async logout() {
     await signOut(this.auth);
     this.logout$.next(true);
-    this.router.navigateByUrl('/', {replaceUrl: true});
+    this.router.navigateByUrl('/login', {replaceUrl: true});
   }
 
   getUserId() {
