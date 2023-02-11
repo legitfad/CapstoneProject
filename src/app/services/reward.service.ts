@@ -6,7 +6,7 @@ export interface rewardUi {
   id?: string;
   rewardName: string;
   rewardCost: string;
-  rewardDate: string;
+  rewardImage: string;
   rewardDetail: string;
   rewardCategory: string;
 }
@@ -41,12 +41,15 @@ export class RewardService {
   updateReward(Reward: rewardUi) {
     const RewardDocRef = doc(this.firestore, `reward/${Reward.id}`);
     return updateDoc(RewardDocRef, 
-      { rewardName: Reward.rewardName, 
+      { 
+      rewardName: Reward.rewardName, 
       rewardCost: Reward.rewardCost , 
-      rewardDate: Reward.rewardDate, 
+      rewardImage: Reward.rewardImage, 
       rewardDetail: Reward.rewardDetail, 
       rewardCategory: Reward.rewardCategory });
   }
 
+
+  
 }
 

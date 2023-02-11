@@ -1,5 +1,7 @@
 {
   "name": "assApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

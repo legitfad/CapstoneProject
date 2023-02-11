@@ -33,22 +33,24 @@ export class RewardPagePage implements OnInit {
         {
           name: 'rewardCost',
           placeholder: 'Reward Cost',
-          type: 'textarea'
+          type: 'text'
         },
         {
-          name: 'rewardDate',
-          placeholder: 'Reward Date',
-          type: 'textarea'
+          name: 'rewardImage',
+          placeholder: 'Reward Image URL',
+          type: 'text'
         },
-        {
-          name: 'rewardDetail',
-          placeholder: 'Reward Detail',
-          type: 'textarea'
-        },
+       
         {
           name: 'rewardCategory',
           placeholder: 'Reward Category',
-          type: 'textarea'
+          type: 'text'
+        },
+
+        {
+        name: 'rewardDetail',
+        placeholder: 'Reward Detail',
+        type: 'textarea'
         }
       ],
       buttons: [
@@ -60,7 +62,7 @@ export class RewardPagePage implements OnInit {
           handler: res => {
             this.RewardService.addReward( { rewardName: res.rewardName, 
               rewardCost: res.rewardCost , 
-              rewardDate: res.rewardDate, 
+              rewardImage: res.rewardImage, 
               rewardDetail: res.rewardDetail, 
               rewardCategory: res.rewardCategory });
                   }
