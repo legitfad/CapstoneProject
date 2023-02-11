@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
-import { SetBudgetPage } from '../set-budget/set-budget.page';
-import { Expense } from '../shared/models/expense';
-import { Personal } from '../shared/models/personal';
-import { expenseUi, PersonalService, personalUi } from '../shared/services/personal.service';
+import { SetBudgetPage } from '../budget/set-budget/set-budget.page';
+import { Expense } from '../models/expense';
+import { Personal } from '../models/personal';
+import { expenseUi, PersonalService, personalUi } from 'src/app/services/personal.service';
 
 @Component({
   selector: 'app-tab1',

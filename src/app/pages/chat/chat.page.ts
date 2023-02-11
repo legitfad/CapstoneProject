@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { ChatService } from '../services/chat.service';
+import { AuthService } from '../../services/auth.service';
+import { ChatService } from '../../services/chat.service';
 import { map, switchMap } from 'rxjs/operators';
 import { IonContent } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera/dist/esm/';
@@ -97,4 +97,6 @@ export class ChatPage implements OnInit {
       this.router.navigateByUrl('/overview');
     });
   }
+
 }
+ 

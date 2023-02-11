@@ -1,5 +1,5 @@
 import { Component, OnInit , Input } from '@angular/core';
-import { RewardService, rewardUi } from '../services/reward.service';
+import { RewardService, rewardUi } from '../../services/reward.service';
 import { ModalController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -28,7 +28,7 @@ export class ModalPage implements OnInit {
       duration: 100
     });
     toast.present();
-
+  
   }
 
   async updateReward() {

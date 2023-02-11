@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
-import { Personal } from '../shared/models/personal';
-import { PersonalService, personalUi } from '../shared/services/personal.service';
+import { Personal } from '../../models/personal';
+import { PersonalService, personalUi } from 'src/app/services/personal.service';
 
 @Component({
   selector: 'app-set-budget',

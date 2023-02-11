@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
-import { StartGroupModalPage } from '../start-group-modal/start-group-modal.page';
-import { ChatService } from '../services/chat.service';
+import { AuthService } from '../../services/auth.service';
+import { StartGroupModalPage } from '../../modals/start-group-modal/start-group-modal.page';
+import { ChatService } from '../../services/chat.service';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-overview',

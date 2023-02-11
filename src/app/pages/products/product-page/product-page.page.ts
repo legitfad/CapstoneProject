@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { productData, ProductService } from '../services/product.service';
+import { productData, ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-product-page',

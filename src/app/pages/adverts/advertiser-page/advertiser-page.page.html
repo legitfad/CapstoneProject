@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" [routerLink]="['/tabs/tab2']">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title class="ion-text-center">Active Campaigns</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  
+  <ion-item-sliding>
+  <ion-item-options side="start">
+    <ion-item-option color="success">
+      <ion-icon slot="start" name="archive"></ion-icon>
+      Archive
+    </ion-item-option>
+  </ion-item-options>
+
+  <ion-item *ngFor="let advert of adverts" >
+
+      <ion-card>
+        
+        <ion-card-content>
+          <ion-card-title>
+                    {{ advert.title }}
+          </ion-card-title>
+          <ion-img [src]="advert.file"></ion-img>
+        </ion-card-content>
+      </ion-card>
+
+  </ion-item>   
+
+  <ion-item-options side="end">
+    <ion-item-option>
+      <ion-icon slot="start" name="heart"></ion-icon>
+      Favorite
+    </ion-item-option>
+    <ion-item-option color="danger" (click)="deleteAdv()">
+      <ion-icon slot="start" name="trash"></ion-icon>
+      Delete
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/add-advert-page">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+ 
+</ion-content>
+ 

@@ -1,7 +1,7 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-import { RewardService, rewardUi } from '../services/reward.service';
-import { ModalPage } from '../modal/modal.page';
+import { RewardService, rewardUi } from '../../../services/reward.service';
+import { ModalPage } from '../../../modals/modal/modal.page';
 
 
 

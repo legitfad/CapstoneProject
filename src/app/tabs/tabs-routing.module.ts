@@ -17,15 +17,15 @@ const routes: Routes = [
       },
       {
         path: 'product-page',
-        loadChildren: () => import('../product-page/product-page.module').then(m => m.ProductPagePageModule)
+        loadChildren: () => import('../pages/products/product-page/product-page.module').then(m => m.ProductPagePageModule)
       },
       {
         path: 'add-product-page',
-        loadChildren: () => import('../add-product-page/add-product-page.module').then(m => m.AddProductPagePageModule)
+        loadChildren: () => import('../pages/products/add-product-page/add-product-page.module').then(m => m.AddProductPagePageModule)
       },
       {
         path: 'reward-page',
-        loadChildren: () => import('../reward-page/reward-page.module').then(m => m.RewardPagePageModule)
+        loadChildren: () => import('../pages/rewards/reward-page/reward-page.module').then(m => m.RewardPagePageModule)
       },
       {
         path: '',
