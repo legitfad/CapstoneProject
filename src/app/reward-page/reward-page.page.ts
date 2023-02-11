@@ -60,7 +60,8 @@ export class RewardPagePage implements OnInit {
         }, {
           text: 'Add',
           handler: res => {
-            this.RewardService.addReward( { rewardName: res.rewardName, 
+            this.RewardService.addReward( { 
+              rewardName: res.rewardName, 
               rewardCost: res.rewardCost , 
               rewardImage: res.rewardImage, 
               rewardDetail: res.rewardDetail, 

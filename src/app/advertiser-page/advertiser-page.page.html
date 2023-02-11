@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-button slot="start" [routerLink]="['/tabs/tab2']">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
     <ion-title class="ion-text-center">Promotions</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,16 +17,18 @@
           <ion-card-title>
                     {{ advert.title }}
           </ion-card-title>
+          <ion-img [src]="advert.image"></ion-img>
         </ion-card-content>
       </ion-card>
 
   </ion-item>   
 
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addAds()">
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/add-advert-page">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
+ 
 </ion-content>
  

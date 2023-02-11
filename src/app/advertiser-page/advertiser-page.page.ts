@@ -22,32 +22,7 @@ export class AdvertiserPagePage implements OnInit {
   ngOnInit() {
   }
 
-  async addAds() {
-    const alert = await this.alerts.create({
-      header: 'Add Campaign',
-      inputs: [
-        {
-          name: 'title',
-          placeholder: 'Campaign Name',
-          type: 'text'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Submit',
-          handler: res => {
-            this.data.addAds({
-              title: res.title
-            })
-          }
-        }
-      ]
-    });
-    await alert.present()
-  }
+ 
 
 
 }

@@ -7,11 +7,7 @@
 <ion-content>
 
   <ion-item>
-    <ion-input [(ngModel)]="adv.title" placeholder="Title"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-input [(ngModel)]="adv.title" placeholder="Title"></ion-input>
+    <ion-input [(ngModel)]="advert.title" placeholder="Title"></ion-input>
   </ion-item>
 
   <div class="image-upload" (click)="addImage()" tappable>
@@ -23,9 +19,9 @@
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" (click)="save()" [disabled]="adv.title == '' || !capturedImage">
+    <ion-fab-button color="success" (click)="save()" [disabled]="advert.title == '' || !capturedImage">
       <ion-icon name="checkmark"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> 
 
 </ion-content>
