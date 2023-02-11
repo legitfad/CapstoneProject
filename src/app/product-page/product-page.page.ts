@@ -12,7 +12,6 @@ export class ProductPagePage implements OnInit {
 
   products: productData[] = [];
 
-
   constructor(private ProductService: ProductService, private alertCtrl: AlertController) {
     this.ProductService.getProduct().subscribe(res => {
       console.log(res);

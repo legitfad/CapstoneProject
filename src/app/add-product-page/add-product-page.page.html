@@ -5,28 +5,60 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-col size="12" width="100%">
 
-  <ion-item>
-      <ion-label position="stacked">Name</ion-label>
-      <ion-input formControlName="name"></ion-input>
-  </ion-item>
+       <ion-card>
+        
+        <ion-card-content>
+          <ion-card-title>
 
-  <ion-item>
-    <ion-label position="stacked">Desccription</ion-label>
-    <ion-textarea rows="6" formControlName="desc"></ion-textarea>
-  </ion-item>
+            <ion-label>
+            {{ product.productName }}
+            </ion-label>
+            <p>
+            {{ product.productDescription }}
+            </p>
 
-  <ion-item>
-    <ion-label position="stacked">Price</ion-label>
-    <ion-input formControlName="price"></ion-input>
-  </ion-item>
+          </ion-card-title>
 
-  <ion-button type="submit" expand="block" class="ion-padding-horizontal ion-margin-vertical"
-  [disabled]="!productForm.valid">
-    Save Product
-  </ion-button>
+          <ion-row no-padding>
+            <ion-col >
+              <label icon-start>
+                <ion-icon name='grid-outline'></ion-icon>
+              {{ product.productCategory }}
+              </label>
+            </ion-col>
 
+            <ion-col text-center>
+              <label icon-start>
+                <ion-icon name='cash'></ion-icon>
+              {{ product.productPrice }}
+              </label>
+            </ion-col>
 
-  </form>
+            <ion-col text-right>
+              <button ion-button clear small color="danger" icon-start class="label-bold">
+                <ion-icon name='build'></ion-icon>
+                Edit
+            </button>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-card-content>
+
+       </ion-card>
+
+      </ion-col>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

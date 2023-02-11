@@ -2,7 +2,7 @@
   <ion-toolbar>
 
     <ion-buttons slot="end">
-      <ion-button fill="clear">
+      <ion-button fill="clear" [routerLink]="['/add-product-page']">
         <ion-icon slot="icon-only" name="add-circle-outline" padding=10px></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -41,7 +41,7 @@
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button (click)="addProduct()">
-        <ion-icon name="add"></ion-icon>
+        <ion-icon name="cart"></ion-icon>
       </ion-fab-button>
     </ion-fab>
 
