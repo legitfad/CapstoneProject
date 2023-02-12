@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Active Campaigns</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  
+
+
+  <ion-item *ngFor="let advert of adverts" >
+
+      <ion-card (click)="openAd(advert)">
+        
+        <ion-card-content>
+          <ion-card-title>
+                    {{ advert.title }}
+          </ion-card-title>
+          <ion-img [src]="advert.file"></ion-img>
+        </ion-card-content>
+
+        <ion-card-subtitle>
+                    Campaign period - 
+  {{ advert.startDate | date: 'dd.MM.yyyy' }} to {{ advert.endDate | date: 'dd.MM.yyyy' }}
+
+        </ion-card-subtitle>
+
+      </ion-card>
+
+  </ion-item>  
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/add-advert-page">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+ 
+</ion-content>
+ 

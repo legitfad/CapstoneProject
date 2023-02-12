@@ -3,19 +3,34 @@ import { Auth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAn
 import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject, from, of } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { switchMap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class AuthService {
   private currentUserData = null;
   logout$: Subject<boolean> = new Subject<boolean>();
+  private user = null;
 
-  constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private db: AngularFirestore, 
+    private auth: Auth, 
+    private firestore: Firestore, 
+    private router: Router) {
+      
     onAuthStateChanged(this.auth, user => {      
       if (user) {
         const userDoc = doc(this.firestore, `users/${user.uid}`);
+        
         docData(userDoc, { idField: 'id' }).pipe(
           takeUntil(this.logout$)
         ).subscribe(data => {
@@ -25,11 +40,25 @@ export class AuthService {
         this.currentUserData = null;
       }
     })
-  }
+
+    // this.user = this.afAuth.authState.pipe(
+    //   switchMap(user => {
+    //     if (user) {
+    //       return this.db.doc(`users/${user.uid}`).valueChanges();
+    //     } else {
+    //       return of(null);
+    //     }
+    //   })
+    // )
+    
+   }
+
 
   login({email, password}) {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
+
+
 
   async signup({ email, password }): Promise<UserCredential> {
     try {
@@ -41,6 +70,7 @@ export class AuthService {
       throw(err);
     }
   }
+
 
   async logout() {
     await signOut(this.auth);

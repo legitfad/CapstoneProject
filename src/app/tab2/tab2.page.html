@@ -1,70 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-button slot="start" [routerLink]="['/advertiser-page']">
+    <ion-button fill="clear" slot="start" [routerLink]="['/advertiser-page']">
       Advertiser Page
     </ion-button>
 
     <ion-title class="ion-text-center">Promotions</ion-title>
 
-    <ion-buttons slot="end">
-      
-    </ion-buttons>
+    <ion-button slot="end" fill="clear" [routerLink]="['/overview']">
+      <ion-icon slot="icon-only" name="chatbubbles-outline" padding=10px [routerLink]="['/overview']"></ion-icon>
+    </ion-button>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header>
-    <ion-button fill="clear" [routerLink]="['/overview']">
-      <ion-icon slot="icon-only" name="chatbubbles-outline" padding=10px [routerLink]="['/overview']"></ion-icon>
-    </ion-button>
-      <ion-card>
-        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-        <ion-card-header>
-          <ion-card-title>Advertisement 1</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-        </ion-card-header>
-      
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more, nothing less.
-        </ion-card-content>
-      </ion-card>
   
+  <ion-header>
+
   </ion-header>
 
+   <ion-item *ngFor="let advert of adverts" >
     <ion-card>
-      <ion-card-content>
-        <ion-list>
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>Item</ion-label>
-          </ion-item>
-    
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>Item</ion-label>
-          </ion-item>
-    
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>Item</ion-label>
-          </ion-item>
-    
-          <ion-item lines="none">
-            <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </ion-thumbnail>
-            <ion-label>Item</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
-
-
+        <ion-img [src]="advert.file"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{ advert.title }}</ion-card-title>
+          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{ advert.desc }}
+        </ion-card-content>
+      </ion-card>
+  </ion-item>
+   
 </ion-content>

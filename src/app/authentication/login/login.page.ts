@@ -21,14 +21,14 @@ export class LoginPage implements OnInit {
       password: ['123456', [Validators.minLength(6), Validators.required]]
     })
   }
-
+ 
   async register() {
     const loading = await this.loadingCtrl.create();
     await loading.present();
  
     this.authSvc.signup(this.credentialsForm.value).then(_ => {
       loading.dismiss();
-      this.router.navigateByUrl('/overview', { replaceUrl: true });
+      this.router.navigateByUrl('/', { replaceUrl: true });
     }, async err => {
       await loading.dismiss();
  
@@ -47,9 +47,8 @@ export class LoginPage implements OnInit {
  
     this.authSvc.login(this.credentialsForm.value).then(user => {
       console.log(user);
-      
       loading.dismiss();
-      this.router.navigateByUrl('/overview', { replaceUrl: true });
+      this.router.navigateByUrl('/', { replaceUrl: true });
     }, async err => {
       await loading.dismiss();
  

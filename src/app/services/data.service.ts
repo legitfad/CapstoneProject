@@ -13,7 +13,10 @@ import { switchMap, take, map } from 'rxjs/operators';
 export interface AdvertUI {
   id?: string;
   title: string;
-  image: string;
+  file: string;
+  desc: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface User {
@@ -41,60 +44,76 @@ export class DataService {
     })
   }
 
-  getAds(): Observable<AdvertUI[]> {
+   getAds(): Observable<AdvertUI[]> {
     const advDocRef = collection(this.firestore, 'advert');
     return collectionData(advDocRef, {idField: 'id'}) as Observable<AdvertUI[]>;
+  }
+
+  getAdsById(id: any): Observable<AdvertUI> {
+    const advDocRef = doc(this.firestore, `advert/${id}`);
+    return docData(advDocRef, { idField: 'id' }) as Observable<AdvertUI>;
   }
 
   addAds(Advert: AdvertUI) {
     const advRef = collection(this.firestore, 'advert');
     return addDoc(advRef, Advert);
   }
-
+ 
   updateAd(Advert: AdvertUI) {
     const AdDocRef = doc(this.firestore, `advert/${Advert.id}`);
     return updateDoc(AdDocRef, 
       { title: Advert.title });
   }
 
-  async addFileMsg(base64) {
+
+  async addFileAdv(advert: AdvertUI) {
     const userId = this.auth.getUserId();
     let newName = `${new Date().getTime()}-${userId}.jpeg`;
 
     const storageRef = ref(this.storage, newName);
-    const uploadResult = await uploadString(storageRef, base64, 'base64', {
+    const uploadResult = await uploadString(storageRef, advert.file, 'base64', {
       contentType: 'image/jpeg'
     });
 
     const url = await getDownloadURL(uploadResult.ref);
 
-    const messages = collection(this.firestore, `post`);
-    return addDoc(messages, {
+    const messages = await addDoc(collection(this.firestore, 'advert'), {
+      title: advert.title,
       from: userId,
       file: url,
+      desc: advert.desc,
+      startDate: advert.startDate,
+      endDate: advert.endDate,
       createdAt: serverTimestamp()
     });
+    console.log('Document added: ', messages)
+  
   }
 
-  addAdvert(advert: AdvertUI) {
-    let newName = `${new Date().getTime()}-DUMMY.png`;
-    let storageRef: AngularFireStorageReference = this.afstorage.ref(`/advert/${newName}`);
-    const storageObs = from(storageRef.putString(advert.image, 'base64', {contentType: 'image/png'}));
-
-    return storageObs.pipe(
-      switchMap(obj => {
-        return obj.ref.getDownloadURL();
-      }),
-      switchMap(url => {
-        console.log('my url: ', url);
-        return this.afs.collection('advert').add({
-          title: advert.title,
-          creator: this.currentUser.uid,
-          image: url
-        });
-      })
-    )
+  deleteAdv(Advert: AdvertUI) {
+    const docRef = doc(this.firestore, `advert/${Advert.id}`);
+    return deleteDoc(docRef);
   }
 
+
+  // addAdvert(advert: AdvertUI) {
+  //   let newName = `${new Date().getTime()}-DUMMY.jpg`;
+  //   let storageRef: AngularFireStorageReference = this.afstorage.ref(`/advert/${newName}`);
+  //   const storageObs = from(storageRef.putString(advert.image, 'base64', {contentType: 'image/png'}));
+
+  //   return storageObs.pipe(
+  //     switchMap(obj => {
+  //       return obj.ref.getDownloadURL();
+  //     }),
+  //     switchMap(url => {
+  //       console.log('my url: ', url);
+  //       return this.afs.collection('advert').add({
+  //         title: advert.title,
+  //         image: url
+  //       });
+  //     })
+  //   )
+  // }
+ 
  
 }
