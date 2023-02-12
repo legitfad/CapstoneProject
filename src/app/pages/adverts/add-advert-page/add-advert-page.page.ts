@@ -17,6 +17,9 @@ export class AddAdvertPagePage implements OnInit {
     desc: '',
     startDate:'',
     endDate: '',
+    owner: '',
+    email: '',
+    uid: '',
   };
 
   capturedImage = null;

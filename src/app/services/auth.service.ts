@@ -51,7 +51,6 @@ export class AuthService {
     
    }
 
-
   login({email, password}) {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
@@ -87,4 +86,5 @@ export class AuthService {
   getUserEmail() {
     return this.currentUserData.email;
   }
+  
 }

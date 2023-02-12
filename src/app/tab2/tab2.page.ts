@@ -11,9 +11,15 @@ import { AdvertUI, DataService } from '../services/data.service';
 export class Tab2Page {
 
   adverts: AdvertUI [] = [];
+  authService: any;
 
-  constructor(private data: DataService, private cd: ChangeDetectorRef,
-    private alerts: AlertController, private modal: ModalController, private router: Router) { 
+  constructor(
+    private data: DataService, 
+    private cd: ChangeDetectorRef,
+    private alerts: AlertController, 
+    private modal: ModalController, 
+    private router: Router
+  ) { 
       this.data.getAds().subscribe(res => {console.log(res);
       this.adverts = res;
      }
@@ -23,5 +29,10 @@ export class Tab2Page {
   toChat() {
     this.router.navigateByUrl('/overview', { replaceUrl: true });
   }
+
+  logout() {
+    this.authService.logout();
+  }
+
 
 }

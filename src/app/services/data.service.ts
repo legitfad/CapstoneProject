@@ -18,13 +18,16 @@ export interface AdvertUI {
   desc: string;
   startDate: string;
   endDate: string;
-}
+  owner: string;
+  email: string;
+  uid: string;
+} 
 
 export interface User {
   uid: string;
   email: string;
 }
-
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -69,8 +72,12 @@ export class DataService {
  
   updateAd(Advert: AdvertUI) {
     const AdDocRef = doc(this.firestore, `advert/${Advert.id}`);
-    return updateDoc(AdDocRef, 
-      { title: Advert.title });
+    return updateDoc(AdDocRef, { 
+      title: Advert.title,
+      desc: Advert.desc,
+      startDate: Advert.startDate,
+      endDate: Advert.endDate, 
+    });
   }
 
   async addFileAdv(advert: AdvertUI) {
