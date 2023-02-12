@@ -24,7 +24,6 @@ export interface expenseUi {
 export class PersonalService {
   personal: Personal[] = [];
   expense: expenseUi[] = [];
-  totalExpense = 0;
   FirebaseId = "IHHnse2sBb7SOo91BrFF";
 
   constructor(private firestore: Firestore) { 
@@ -73,14 +72,6 @@ export class PersonalService {
     return updateDoc(expenseDocRef, { expenseName: expense.expenseName, expenseCategory: expense.expenseCategory, expensePrice: expense.expensePrice, expenseDate: expense.expenseDate });
   }
 
-  // total(expense: expenseUi){
-  //   if (this.expense.length > 0){
-  //     for (let i = 0; i < this.expense.length; i++) {
-  //       this.totalExpense += this.expense[i]['expensePrice'];
-  //     }
-  //   }
-  //   return totalExpense;
-  // }
   // set(p: Personal) {
   //   const index = this.personal.findIndex(item => item.id == p.id);
   //   const pers = this.personal[0];

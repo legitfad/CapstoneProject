@@ -29,14 +29,6 @@ export class SetBudgetPage implements OnInit {
   ngOnInit() {
   }
 
-  // async updateBudget(){
-  //   await this.personalService.updateBudget(this.personal);
-  //   const toast = await this.toastCtrl.create({
-  //     message: 'Budget updated!.',
-  //     duration: 2000
-  //   });
-  //   toast.present();
-  // }
   set() {
     const pers = new Personal(
     this.setBudgetForm.value.name,

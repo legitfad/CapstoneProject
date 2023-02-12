@@ -15,6 +15,8 @@ import { AuthService } from '../services/auth.service';
 export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
+  totalExpense = 0;
+  sumA = 0;
 
   constructor(
     private personalService: PersonalService, 
@@ -36,9 +38,13 @@ export class Tab1Page {
       }
     )
 
-    // this.personalService.total().subscribe(res => {console.log(res);
-    //   this.expenses = res;
-    // })
+    // this.totalExpense = this.personalService.total();
+  }
+
+  async calcTotal(){
+    for (const q of this.expenses){
+      this.sumA += Number(q.expensePrice || 0);
+    }
   }
   async set() {
     const modal = await this.modalController.create({
@@ -102,6 +108,8 @@ export class Tab1Page {
     });
     await modal.present();
   }
+
+  
 
   logout() {
     this.authService.logout();
