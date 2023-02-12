@@ -13,8 +13,12 @@ export class OverviewPage implements OnInit {
   chats = [];
   subscriptions = new Subscription();
 
-  constructor(private authService: AuthService, private modalCtrl: ModalController,
-    private routerOutlet: IonRouterOutlet, private chatService: ChatService) { }
+  constructor(
+    private authService: AuthService, 
+    private modalCtrl: ModalController,
+    private routerOutlet: IonRouterOutlet, 
+    private chatService: ChatService
+  ) { }
 
   ngOnInit() {
     this.loadChats();
