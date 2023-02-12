@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
-import { PersonalService, expenseUi } from '../shared/services/personal.service';
+import { PersonalService, expenseUi } from '../services/personal.service';
 
 @Component({
   selector: 'app-expense-modal',
