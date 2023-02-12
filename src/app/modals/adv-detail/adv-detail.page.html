@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Campaign Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="advert">
+    <ion-item>
+      <ion-label position="stacked">Campaign Title</ion-label>
+      <ion-input [(ngModel)]="advert.title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Advert Image</ion-label>
+      <ion-input [(ngModel)]="advert.file" rows="8"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-input [(ngModel)]="advert.desc"></ion-input>
+    </ion-item>
+
+  </div>
+
+  <ion-button expand="block" color="success" (click)="updateAdv()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Update
+  </ion-button>
+
+  <ion-button expand="block" color="danger" (click)="deleteAdv()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Delete
+  </ion-button>
+ 
+</ion-content>

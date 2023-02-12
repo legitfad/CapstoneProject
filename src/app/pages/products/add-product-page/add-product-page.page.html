@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-col size="12" width="100%">
+
+       <ion-card>
+        
+        <ion-card-content>
+          <ion-card-title>
+
+            <ion-label>
+            {{ product.productName }}
+            </ion-label>
+            <p>
+            {{ product.productDescription }}
+            </p>
+
+          </ion-card-title>
+
+          <ion-row no-padding>
+            <ion-col >
+              <label icon-start>
+                <ion-icon name='grid-outline'></ion-icon>
+              {{ product.productCategory }}
+              </label>
+            </ion-col>
+
+            <ion-col text-center>
+              <label icon-start>
+                <ion-icon name='cash'></ion-icon>
+              {{ product.productPrice }}
+              </label>
+            </ion-col>
+
+            <ion-col text-right>
+              <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openProduct(product)">
+                <ion-icon name='build'></ion-icon>
+                Edit
+            </button>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-card-content>
+
+       </ion-card>
+
+      </ion-col>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

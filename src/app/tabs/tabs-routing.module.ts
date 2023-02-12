@@ -16,12 +16,16 @@ const routes: Routes = [
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'product-page',
+        loadChildren: () => import('../pages/products/product-page/product-page.module').then(m => m.ProductPagePageModule)
+      },
+      {
+        path: 'add-product-page',
+        loadChildren: () => import('../pages/products/add-product-page/add-product-page.module').then(m => m.AddProductPagePageModule)
       },
       {
         path: 'reward-page',
-        loadChildren: () => import('../reward-page/reward-page.module').then(m => m.RewardPagePageModule)
+        loadChildren: () => import('../pages/rewards/reward-page/reward-page.module').then(m => m.RewardPagePageModule)
       },
       {
         path: '',
