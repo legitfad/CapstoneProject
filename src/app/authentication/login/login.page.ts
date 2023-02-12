@@ -53,7 +53,12 @@ export class LoginPage implements OnInit {
     this.authSvc.login(this.credentialsForm.value).then(user => {
       console.log(user);
       loading.dismiss();
+      // if (user.user.displayName.match(/admin/) ) {
+      if (user.user.displayName == 'Admin123') {
+      this.router.navigateByUrl('/control', { replaceUrl: true });
+      } else {
       this.router.navigateByUrl('/', { replaceUrl: true });
+    }
     }, async err => {
       await loading.dismiss();
  
@@ -65,4 +70,6 @@ export class LoginPage implements OnInit {
       await alert.present();
     });
   }
+
 }
+ 

@@ -12,6 +12,7 @@ import { AdvertUI, DataService } from '../../../services/data.service';
 export class AdvertiserPagePage implements OnInit {
 
   adverts: AdvertUI [] = [];
+  filterAdv: AdvertUI[];
 
   constructor(
     private data: DataService, 
@@ -22,10 +23,14 @@ export class AdvertiserPagePage implements OnInit {
     private db: AngularFirestore,
   ) { 
       this.data.getAds().subscribe(res => {console.log(res);
-      this.adverts = res;
+      this.adverts = res.filter(advert => advert.email === this.data.currentUser.email)
       
      }
     )
+  }
+ 
+  filterData() {
+    this.filterAdv = this.adverts.filter(advert => advert.email === this.data.currentUser.email);  
   }
 
   ngOnInit() {

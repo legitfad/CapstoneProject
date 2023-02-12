@@ -21,6 +21,42 @@
       <ion-input [(ngModel)]="advert.desc"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label>Start Date</ion-label>
+      <ion-input
+        value="{{ advert.startDate | date: 'dd.MM.yyyy' }}"
+        id="date"
+        class="ion-text-end"
+      ></ion-input>
+      <ion-popover trigger="date" size="cover">
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="advert.startDate"
+            locale="en-SG"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>End Date</ion-label>
+      <ion-input
+        value="{{ advert.endDate | date: 'dd.MM.yyyy' }}"
+        id="date"
+        class="ion-text-end"
+      ></ion-input>
+      <ion-popover trigger="date" size="cover">
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="advert.endDate"
+            locale="en-SG"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  
   </div>
 
   <ion-button expand="block" color="success" (click)="updateAdv()">

@@ -61,10 +61,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
   {
-    path: 'edit-ad',
-    loadChildren: () => import('./pages/adverts/edit-ad/edit-ad.module').then( m => m.EditAdPageModule)
-  },
-  {
     path: 'adv-detail',
     loadChildren: () => import('./modals/adv-detail/adv-detail.module').then( m => m.AdvDetailPageModule)
   },
@@ -89,12 +85,12 @@ const routes: Routes = [
     path: 'point-modal',
     loadChildren: () => import('./modals/point-modal/point-modal.module').then( m => m.PointModalPageModule)
   },
+  {
+    path: 'control',
+    loadChildren: () => import('./admin/control/control.module').then( m => m.ControlPageModule)
+  },
 
-
-
-
-
-
+  
 
 ];
 @NgModule({

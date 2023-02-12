@@ -1,13 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-button fill="clear" slot="start" [routerLink]="['/advertiser-page']">
+    <!-- <ion-button fill="clear" slot="start" [routerLink]="['/advertiser-page']">
       Advertiser Page
+    </ion-button> -->
+    <ion-button slot="start" fill="clear" [routerLink]="['/overview']">
+      <ion-icon slot="icon-only" name="chatbubbles-outline" padding=10px [routerLink]="['/overview']"></ion-icon>
     </ion-button>
 
     <ion-title class="ion-text-center">Promotions</ion-title>
 
-    <ion-button slot="end" fill="clear" [routerLink]="['/overview']">
-      <ion-icon slot="icon-only" name="chatbubbles-outline" padding=10px [routerLink]="['/overview']"></ion-icon>
+    <ion-button slot='end' fill='clear' (click)="logout()">
+      <ion-icon name="exit-outline" slot="icon-only"></ion-icon>
     </ion-button>
 
   </ion-toolbar>
