@@ -4,8 +4,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>  
-        <ion-item *ngFor="let reward of rewards" >
+<ion-content> 
+  
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let personal of personals">
+        <ion-avatar slot="start">
+          <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+        </ion-avatar>
+        <ion-label id="profile-name">
+          <h1>{{personal.personalName}}</h1>
+          <h2>Point : {{personal.personalPoint}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div>
+    <ion-list>
+      <ion-item>
+        <ion-select #rewardCat placeholder="Filter By Category" (ionChange)="filterData(rewardCat.value)" >
+          <ion-select-option value="Home">Home</ion-select-option>
+          <ion-select-option value="Food">Food</ion-select-option>
+          <ion-select-option value="Drink">Drink</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+
+        <ion-item *ngFor="let reward of filteredRewards" >
           <ion-col size="12" width="100%">
             <ion-card>
               <img src="{{ reward.rewardImage }}" class="image-size"/>
@@ -32,9 +59,9 @@
                     </label>
 
                   </ion-col>
-                  <ion-col text-right>
+                  <ion-col text-right *ngFor="let point of points">
                     <button ion-button clear small color="danger" icon-start class="label-bold" 
-                    (click)="exchangeReward(reward)"> 
+                    (click)="exchangeReward(point,reward)"> 
                       <ion-icon name='share'></ion-icon>
                       Exchange
                     </button>

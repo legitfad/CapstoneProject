@@ -8,6 +8,7 @@ export interface personalUi {
   personalBudget: number;
   personalResetDate: string;
   personalId?: string;
+  personalPoint: number;
 }
 
 export interface expenseUi {
@@ -43,7 +44,7 @@ export class PersonalService {
     return updateDoc(PersonalDocRef, 
     { 
       personalBudget: Personal.personalBudget, 
-      personalResetDate: Personal.personalResetDate 
+      personalResetDate: Personal.personalResetDate,
     });
   }
 
@@ -71,6 +72,7 @@ export class PersonalService {
     const expenseDocRef = doc(this.firestore, `expense/${expense.id}`);
     return updateDoc(expenseDocRef, { expenseName: expense.expenseName, expenseCategory: expense.expenseCategory, expensePrice: expense.expensePrice, expenseDate: expense.expenseDate });
   }
+
   // set(p: Personal) {
   //   const index = this.personal.findIndex(item => item.id == p.id);
   //   const pers = this.personal[0];

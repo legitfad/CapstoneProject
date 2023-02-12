@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc, serverTimestamp } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc, serverTimestamp, query, where } from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage, uploadString } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
@@ -9,6 +9,7 @@ import { Advert } from 'src/model/advert';
 
 import { from, Observable } from 'rxjs';
 import { switchMap, take, map } from 'rxjs/operators';
+import { user } from '@angular/fire/auth';
 
 export interface AdvertUI {
   id?: string;
@@ -30,24 +31,31 @@ export interface User {
 export class DataService {
   currentUser: User = null;
   // allAdverts: Advert[] = [];
+  adverts: Observable<any[]>;
 
   constructor(
     private afs: AngularFirestore, 
     private afstorage: AngularFireStorage, 
     private afAuth: AngularFireAuth,
-  private firestore: Firestore, 
-  private storage: Storage, 
-  private auth: AuthService ) { 
+    private firestore: Firestore, 
+    private storage: Storage, 
+    private auth: AuthService, 
+  ) { 
     this.afAuth.onAuthStateChanged(user => {
       console.log('User change: ', user);
       this.currentUser = user
     })
   }
 
-   getAds(): Observable<AdvertUI[]> {
+  getAds(): Observable<AdvertUI[]> {
     const advDocRef = collection(this.firestore, 'advert');
     return collectionData(advDocRef, {idField: 'id'}) as Observable<AdvertUI[]>;
   }
+
+  getAdsByOwner() {
+  return this.afs.collection('advert', ref => ref.where('email', '==', this.currentUser.email))
+  }
+
 
   getAdsById(id: any): Observable<AdvertUI> {
     const advDocRef = doc(this.firestore, `advert/${id}`);
@@ -65,9 +73,10 @@ export class DataService {
       { title: Advert.title });
   }
 
-
   async addFileAdv(advert: AdvertUI) {
     const userId = this.auth.getUserId();
+    const displayName = this.auth.getUserName();
+    const email = this.auth.getUserEmail();
     let newName = `${new Date().getTime()}-${userId}.jpeg`;
 
     const storageRef = ref(this.storage, newName);
@@ -79,7 +88,9 @@ export class DataService {
 
     const messages = await addDoc(collection(this.firestore, 'advert'), {
       title: advert.title,
-      from: userId,
+      uid: userId,
+      owner: displayName,
+      email: email,
       file: url,
       desc: advert.desc,
       startDate: advert.startDate,
