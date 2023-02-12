@@ -57,7 +57,7 @@ export class RewardPagePage implements OnInit {
           handler: res => {
             this.RewardService.addReward( { rewardName: res.rewardName, 
               rewardCost: res.rewardCost , 
-              rewardDate: res.rewardDate, 
+              rewardImage: res.rewardImage, 
               rewardDetail: res.rewardDetail, 
               rewardCategory: res.rewardCategory });
                   }
