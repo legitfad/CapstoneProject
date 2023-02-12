@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from '@angular/fire/auth';
 import { doc, docData, Firestore, serverTimestamp, setDoc } from '@angular/fire/firestore';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -56,11 +56,12 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-
-
   async signup({ email, password, name }): Promise<UserCredential> {
     try {
       const credentials = await createUserWithEmailAndPassword(this.auth, email, password);
+      updateProfile(this.auth.currentUser, {
+        displayName: name
+      })
       const userDoc = doc(this.firestore, `users/${credentials.user.uid}`);
       await setDoc(userDoc, { createdAt: serverTimestamp() ,email, name, chats: [] });
       return credentials;
@@ -68,7 +69,6 @@ export class AuthService {
       throw(err);
     }
   }
-
 
   async logout() {
     await signOut(this.auth);
@@ -78,6 +78,10 @@ export class AuthService {
 
   getUserId() {
     return this.auth.currentUser.uid;
+  }
+
+  getUserName() {
+    return this.auth.currentUser.displayName;
   }
 
   getUserEmail() {

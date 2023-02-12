@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { AdvDetailPage } from 'src/app/modals/adv-detail/adv-detail.page';
 import { AdvertUI, DataService } from '../../../services/data.service';
@@ -17,7 +18,8 @@ export class AdvertiserPagePage implements OnInit {
     private cd: ChangeDetectorRef,
     private alerts: AlertController, 
     private modal: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private db: AngularFirestore,
   ) { 
       this.data.getAds().subscribe(res => {console.log(res);
       this.adverts = res;
@@ -28,7 +30,6 @@ export class AdvertiserPagePage implements OnInit {
 
   ngOnInit() {
   }
-
 
   async openAd(advert: AdvertUI) {
     const modal = await this.modal.create({
