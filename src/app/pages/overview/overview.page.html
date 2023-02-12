@@ -1,22 +1,20 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
-      </ion-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>My Chats</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="startGroup()">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-    </ion-button>
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
   
 
 </ion-header>
-<ion-button [routerLink]="['/advertiser-page']">
-  Advertiser Page
+<ion-button expand="block" (click)="startGroup()">
+  New Chat
 </ion-button>
 
 <ion-content>

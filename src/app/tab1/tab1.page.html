@@ -1,17 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Personal Information
-    </ion-title>
+    <ion-title class="ion-text-center">Personal Info</ion-title>
+    <ion-button slot='end' fill='clear' (click)="logout()">
+      <ion-icon name="exit-outline" slot="icon-only"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Personal Information is displayed here</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <ion-list>
     <ion-item *ngFor="let personal of personals">

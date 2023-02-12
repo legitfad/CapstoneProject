@@ -81,6 +81,11 @@ const routes: Routes = [
   },
 
 
+  },  {
+    path: 'register',
+    loadChildren: () => import('./authentication/register/register.module').then( m => m.RegisterPageModule)
+  },
+
 
 
 
