@@ -22,7 +22,7 @@ export class AddProductbannerPagePage implements OnInit {
     const mimeType = files[0].type;
     if(mimeType.match(/image\/*/) == null) return;
     const file = files[0];
-    const filePath = 'ProductBanners/' + Date.now() + '_' + file.name;
+    const filePath = 'productBanners/' + Date.now() + '_' + file.name;
     const fileRef = this.firestorage.ref(filePath);
     const task = this.firestorage.upload(filePath, file);
     task.snapshotChanges().pipe(
