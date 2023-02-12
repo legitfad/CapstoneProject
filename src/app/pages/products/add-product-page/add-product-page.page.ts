@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-import { productData, ProductService } from '../services/product.service';
-import { ModalProductPage } from '../modal-product/modal-product.page';
+import { ModalProductPage } from 'src/app/modal-product/modal-product.page';
+import { productData, ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-add-product-page',

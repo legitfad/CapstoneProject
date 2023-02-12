@@ -43,7 +43,7 @@ const routes: Routes = [
   {
     path: 'reward-page',
     loadChildren: () => import('./pages/rewards/reward-page/reward-page.module').then( m => m.RewardPagePageModule)
-  },
+  }, 
   {
     path: 'modal',
     loadChildren: () => import('./modals/modal/modal.module').then( m => m.ModalPageModule)

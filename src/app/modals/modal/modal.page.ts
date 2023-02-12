@@ -1,10 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
-<<<<<<< HEAD:src/app/modal/modal.page.ts
-=======
 import { RewardService, rewardUi } from '../../services/reward.service';
->>>>>>> master:src/app/modals/modal/modal.page.ts
 import { ModalController, ToastController } from '@ionic/angular';
-import { RewardService, rewardUi } from '../services/reward.service';
 
 @Component({
   selector: 'app-modal',
