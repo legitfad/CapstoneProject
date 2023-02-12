@@ -43,7 +43,7 @@ export class PersonalService {
     return updateDoc(PersonalDocRef, 
     { 
       personalBudget: Personal.personalBudget, 
-      personalResetDate: Personal.personalResetDate 
+      personalResetDate: Personal.personalResetDate,
     });
   }
 

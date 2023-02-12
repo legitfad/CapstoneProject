@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirm Transaction</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="point">
+    <ion-item>
+      <ion-label position="stacked">My Point</ion-label>
+      <ion-input [(ngModel)]="point.point"  [readonly]="isReadonly()"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Purpose</ion-label>
+      <ion-input [(ngModel)]="point.purpose" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">PersonalId</ion-label>
+      <ion-input [(ngModel)]="point.personalId" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">RewardId </ion-label>
+      <ion-input [(ngModel)]="point.rewardId" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+  </div>
+  <div *ngIf="reward">
+    <ion-item>
+      <ion-label position="stacked">Reward Name</ion-label>
+      <ion-input [(ngModel)]="reward.rewardName" [readonly]="isReadonly()"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Reward Category</ion-label>
+      <ion-input [(ngModel)]="reward.rewardCategory" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Point Cost</ion-label>
+      <ion-input [(ngModel)]="reward.rewardCost" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Reward Details</ion-label>
+      <ion-textarea [(ngModel)]="reward.rewardDetail" [readonly]="isReadonly()" rows="8"></ion-textarea>
+    </ion-item>
+  
+  </div>
+
+
+</ion-content>

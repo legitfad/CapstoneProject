@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { IonDatetime } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 export interface rewardUi {
@@ -10,6 +11,7 @@ export interface rewardUi {
   rewardDetail: string;
   rewardCategory: string;
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +50,5 @@ export class RewardService {
       rewardDetail: Reward.rewardDetail, 
       rewardCategory: Reward.rewardCategory });
   }
-
-
-  
 }
 
