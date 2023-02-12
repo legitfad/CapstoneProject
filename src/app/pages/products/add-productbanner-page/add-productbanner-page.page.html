@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Product Banner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list lines="none">
+    <ion-item>
+      <input type="file" (change)="preview($event)">
+      <img *ngIf="productBannerImange" [src]="productBannerImange">
+    </ion-item>
+  </ion-list>
+
+  <ion-button class="ion-margin" expand="block" color="primary" (click)="saveBanner()">Save</ion-button>
+
+</ion-content>

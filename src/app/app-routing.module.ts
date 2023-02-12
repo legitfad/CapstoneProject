@@ -81,6 +81,11 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'add-productbanner-page',
+    loadChildren: () => import('./pages/products/add-productbanner-page/add-productbanner-page.module').then( m => m.AddProductbannerPagePageModule)
+  },
+
+  {
     path: 'point-modal',
     loadChildren: () => import('./modals/point-modal/point-modal.module').then( m => m.PointModalPageModule)
   },
