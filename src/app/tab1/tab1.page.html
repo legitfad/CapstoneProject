@@ -23,6 +23,7 @@
         <h1>{{personal.personalName}}</h1>
         <h2>Budget Set: {{personal.personalBudget}}</h2>
         <h2>Reset Date: {{personal.personalResetDate | date: "dd-MM-yyyy"}}</h2>
+        <h2>Savings: {{calcSavings()}}</h2>
       </ion-label>
       <ion-button expand="block" color="secondary" type="submit" (click)="set()">Set Budget</ion-button>
     </ion-item>
@@ -30,7 +31,7 @@
 
   <ion-content class="ion-padding">
     <ion-button (click)="addExpense()" expand="block">Add Expense</ion-button>
-    <ion-button id="open-modal" (click)="calcTotal()" expand="block">Personal Expenses</ion-button>
+    <ion-button id="open-modal" expand="block">Personal Expenses</ion-button>
     <ion-modal
     trigger="open-modal"
     [initialBreakpoint]="0.25"
@@ -41,7 +42,7 @@
       <ion-content class="ion-padding">
         <div class="ion-margin-top">
           <ion-label>
-            <h1>My Personal Expenses {{sumA}}</h1>
+            <h1>My Personal Expenses {{calcTotalExpense()}}</h1>
           </ion-label>
         </div>
         <ion-list>
