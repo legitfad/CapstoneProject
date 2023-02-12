@@ -14,6 +14,9 @@ export class AddAdvertPagePage implements OnInit {
   advert: AdvertUI = {
     title: '',
     file: '', 
+    desc: '',
+    startDate:'',
+    endDate: '',
   };
 
   capturedImage = null;

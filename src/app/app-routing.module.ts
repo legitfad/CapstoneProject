@@ -68,6 +68,11 @@ const routes: Routes = [
     path: 'edit-ad',
     loadChildren: () => import('./pages/adverts/edit-ad/edit-ad.module').then( m => m.EditAdPageModule)
   },
+  {
+    path: 'adv-detail',
+    loadChildren: () => import('./modals/adv-detail/adv-detail.module').then( m => m.AdvDetailPageModule)
+  },
+
 
 
 

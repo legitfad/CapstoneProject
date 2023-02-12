@@ -1,25 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" [routerLink]="['/tabs/tab2']">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title class="ion-text-center">Active Campaigns</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content> 
   
-  <ion-item-sliding>
-  <ion-item-options side="start">
-    <ion-item-option color="success">
-      <ion-icon slot="start" name="archive"></ion-icon>
-      Archive
-    </ion-item-option>
-  </ion-item-options>
+
 
   <ion-item *ngFor="let advert of adverts" >
 
-      <ion-card>
+      <ion-card (click)="openAd(advert)">
         
         <ion-card-content>
           <ion-card-title>
@@ -27,23 +21,16 @@
           </ion-card-title>
           <ion-img [src]="advert.file"></ion-img>
         </ion-card-content>
+
+        <ion-card-subtitle>
+                    Campaign period - 
+  {{ advert.startDate | date: 'dd.MM.yyyy' }} to {{ advert.endDate | date: 'dd.MM.yyyy' }}
+
+        </ion-card-subtitle>
+
       </ion-card>
 
-  </ion-item>   
-
-  <ion-item-options side="end">
-    <ion-item-option>
-      <ion-icon slot="start" name="heart"></ion-icon>
-      Favorite
-    </ion-item-option>
-    <ion-item-option color="danger" (click)="deleteAdv()">
-      <ion-icon slot="start" name="trash"></ion-icon>
-      Delete
-    </ion-item-option>
-  </ion-item-options>
-</ion-item-sliding>
-
-
+  </ion-item>  
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="primary" routerLink="/add-advert-page">

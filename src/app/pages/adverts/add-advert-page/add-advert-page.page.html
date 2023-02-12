@@ -4,10 +4,49 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
   <ion-item>
     <ion-input [(ngModel)]="advert.title" placeholder="Title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="advert.desc" placeholder="Description"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Start Date</ion-label>
+    <ion-input
+      value="{{ advert.startDate | date: 'dd.MM.yyyy' }}"
+      id="date"
+      class="ion-text-end"
+    ></ion-input>
+    <ion-popover trigger="date" size="cover">
+      <ng-template>
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="advert.startDate"
+          locale="en-SG"
+        ></ion-datetime>
+      </ng-template>
+    </ion-popover>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>End Date</ion-label>
+    <ion-input
+      value="{{ advert.endDate | date: 'dd.MM.yyyy' }}"
+      id="date"
+      class="ion-text-end"
+    ></ion-input>
+    <ion-popover trigger="date" size="cover">
+      <ng-template>
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="advert.endDate"
+          locale="en-SG"
+        ></ion-datetime>
+      </ng-template>
+    </ion-popover>
   </ion-item>
 
   <div class="image-upload" (click)="addImage()" tappable>
@@ -17,6 +56,8 @@
     </p>
     <img [src]="capturedImage" *ngIf="capturedImage">
   </div>
+
+  
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="success" (click)="save()" [disabled]="advert.title == '' || !capturedImage">

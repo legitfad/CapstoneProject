@@ -14,7 +14,12 @@ export class RewardPagePage implements OnInit {
 
   rewards: rewardUi[] = [];
 
-  constructor(private RewardService: RewardService, private cd: ChangeDetectorRef, private alertCtrl: AlertController, private modalCtrl: ModalController) {
+  constructor(
+    private RewardService: RewardService, 
+    private cd: ChangeDetectorRef, 
+    private alertCtrl: AlertController, 
+    private modalCtrl: ModalController
+  ) {
     this.RewardService.getRewards().subscribe(res => {console.log(res);
       this.rewards = res;
       }

@@ -14,6 +14,9 @@ export interface AdvertUI {
   id?: string;
   title: string;
   file: string;
+  desc: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface User {
@@ -39,22 +42,23 @@ export class DataService {
       console.log('User change: ', user);
       this.currentUser = user
     })
-
-    
   }
 
- 
-
-  getAds(): Observable<AdvertUI[]> {
+   getAds(): Observable<AdvertUI[]> {
     const advDocRef = collection(this.firestore, 'advert');
     return collectionData(advDocRef, {idField: 'id'}) as Observable<AdvertUI[]>;
+  }
+
+  getAdsById(id: any): Observable<AdvertUI> {
+    const advDocRef = doc(this.firestore, `advert/${id}`);
+    return docData(advDocRef, { idField: 'id' }) as Observable<AdvertUI>;
   }
 
   addAds(Advert: AdvertUI) {
     const advRef = collection(this.firestore, 'advert');
     return addDoc(advRef, Advert);
   }
-
+ 
   updateAd(Advert: AdvertUI) {
     const AdDocRef = doc(this.firestore, `advert/${Advert.id}`);
     return updateDoc(AdDocRef, 
@@ -77,14 +81,17 @@ export class DataService {
       title: advert.title,
       from: userId,
       file: url,
+      desc: advert.desc,
+      startDate: advert.startDate,
+      endDate: advert.endDate,
       createdAt: serverTimestamp()
     });
     console.log('Document added: ', messages)
   
   }
 
-  deleteAdvert(Advert: AdvertUI) {
-    const docRef = doc(this.firestore, `reward/${Advert.id}`);
+  deleteAdv(Advert: AdvertUI) {
+    const docRef = doc(this.firestore, `advert/${Advert.id}`);
     return deleteDoc(docRef);
   }
 
