@@ -32,17 +32,22 @@ export class ProductPagePage implements OnInit {
         {
           name: 'productDescription',
           placeholder: 'Product Description',
-          type: 'textarea'
+          type: 'text'
         },
         {
-          name: 'Product Category',
+          name: 'productCategory',
           placeholder: 'Product Category',
           type: 'text'
         },
         {
-          name: 'rewardPrice',
+          name: 'productPrice',
           placeholder: 'Product Price',
-          type: 'textarea'
+          type: 'text'
+        },
+        {
+          name: 'productImage',
+          placeholder: 'Product Image',
+          type: 'text'
         },
       ],
       buttons: [
@@ -56,7 +61,9 @@ export class ProductPagePage implements OnInit {
               productName: res.productName, 
               productDescription: res.productDescription, 
               productCategory: res.productCategory, 
-              productPrice: res.productPrice });
+              productPrice: res.productPrice,
+              productImage: res.productImage
+            });
                   }
         }
       ]
