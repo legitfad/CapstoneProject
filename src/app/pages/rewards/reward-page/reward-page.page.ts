@@ -17,6 +17,7 @@ import { PointModalPage } from '../../../modals/point-modal/point-modal.page';
 export class RewardPagePage implements OnInit {
 
   rewards: rewardUi[] = [];
+  filteredRewards: rewardUi[];
   personals: personalUi[] = []; 
   points: pointUI[] = []; 
 
@@ -35,6 +36,9 @@ export class RewardPagePage implements OnInit {
       }
     )
    }
+    filterData(category: string) {
+    this.filteredRewards = this.rewards.filter(reward => reward.rewardCategory === category);
+}
 
     async addReward() {
     const alert = await this.alertCtrl.create({
@@ -112,5 +116,6 @@ export class RewardPagePage implements OnInit {
   
   ngOnInit() {
   }
+  
 
 }

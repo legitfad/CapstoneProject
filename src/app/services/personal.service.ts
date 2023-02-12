@@ -8,6 +8,7 @@ export interface personalUi {
   personalBudget: number;
   personalResetDate: string;
   personalId?: string;
+  personalPoint: number;
 }
 
 export interface expenseUi {
