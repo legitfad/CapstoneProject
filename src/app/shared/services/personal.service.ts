@@ -52,21 +52,24 @@ export class PersonalService {
     return collectionData(ExpenseDocRef, {idField: 'id'}) as Observable<expenseUi[]>;
   }
 
+  getExpenseById(id): Observable<expenseUi> {
+    const expenseDocRef = doc(this.firestore, `expense/${id}`);
+    return docData(expenseDocRef, { idField: 'id' }) as Observable<expenseUi>;
+  }
+
   addExpense(expense: expenseUi) {
     const expensesRef = collection(this.firestore, 'expense');
     return addDoc(expensesRef, expense);
   }
 
   deleteExpense(expense: expenseUi) {
-    const index = this.expense.findIndex(item => item.id == expense.id);
-    if (index >= 0) {
-      this.expense.splice(index, 1);
-    }
+    const expenseDocRef = doc(this.firestore, `expense/${expense.id}`);
+    return deleteDoc(expenseDocRef);
   }
 
   updateExpense(expense: expenseUi) {
     const expenseDocRef = doc(this.firestore, `expense/${expense.id}`);
-    return updateDoc(expenseDocRef, { name: expense.expenseName, category: expense.expenseCategory, price: expense.expensePrice, date: expense.expenseDate });
+    return updateDoc(expenseDocRef, { expenseName: expense.expenseName, expenseCategory: expense.expenseCategory, expensePrice: expense.expensePrice, expenseDate: expense.expenseDate });
   }
   // set(p: Personal) {
   //   const index = this.personal.findIndex(item => item.id == p.id);

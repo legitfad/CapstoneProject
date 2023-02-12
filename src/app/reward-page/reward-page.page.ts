@@ -63,7 +63,7 @@ export class RewardPagePage implements OnInit {
               rewardDate: res.rewardDate, 
               rewardDetail: res.rewardDetail, 
               rewardCategory: res.rewardCategory });
-                  }
+            }
         }
       ]
     });

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Expense Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="expense">
+    <ion-item>
+      <ion-label position="stacked">Product Name</ion-label>
+      <ion-input [(ngModel)]="expense.expenseName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Product Category</ion-label>
+      <ion-input [(ngModel)]="expense.expenseCategory"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Product Price</ion-label>
+      <ion-input [(ngModel)]="expense.expensePrice"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Date of Expense</ion-label>
+      <ion-input [(ngModel)]="expense.expenseDate"></ion-input>
+    </ion-item>
+  </div>
+
+  <ion-button expand="block" color="success" (click)="updateExpense()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Update
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteExpense()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Delete
+  </ion-button>
+
+</ion-content>
