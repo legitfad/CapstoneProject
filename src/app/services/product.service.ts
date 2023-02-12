@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 export interface productData {
   id?: string;
@@ -18,7 +19,7 @@ export interface productData {
 
 export class ProductService {
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, private adb: AngularFirestore) { }
 
   getProduct(): Observable<productData[]> {
     const productDocumentRef = collection(this.firestore, 'product'); //'product' calling database name (Collection)
@@ -49,4 +50,45 @@ export class ProductService {
       productPrice: product.productPrice,
       productImage: product.productImage}); //updating the info in your database 
   }
+
+  collection(path, queryFn?) {
+    return this.adb.collection(path, queryFn);
+  }
+
+  randomString() {
+    const id = Math.floor(100000000 + Math.random() * 900000000);
+    return id.toString();
+  }
+
+  // banner apis
+  async addBanner(data) {
+    try {
+      const id = this.randomString();
+      data.id = id;
+      await this.collection('ProductBanner').doc(id).set(data);
+    } catch(e) {
+      console.log(e);
+      throw(e);
+    }
+  }
+
+  async getBanners() {
+    try {
+      const banners = await this.collection('ProductBanner').get().pipe(
+        switchMap(async(data: any) => {
+          let bannerData = await data.docs.map(element => {
+            const item = element.data();
+            return item;
+          });
+          console.log(bannerData);
+          return bannerData;
+        })
+      ).toPromise();
+      console.log(banners);
+      return banners;
+    } catch(e) {
+      throw(e);
+    }
+  }
+  
 }
