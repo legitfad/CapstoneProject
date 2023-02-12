@@ -1,7 +1,11 @@
 import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { RewardService, rewardUi } from '../../../services/reward.service';
+import { PersonalService, personalUi } from '../../../services/personal.service';
+import { PointService, pointUI } from '../../../services/point.service';
 import { ModalPage } from '../../../modals/modal/modal.page';
+import { PointModalPage } from '../../../modals/point-modal/point-modal.page';
+
 
 
 
@@ -13,15 +17,21 @@ import { ModalPage } from '../../../modals/modal/modal.page';
 export class RewardPagePage implements OnInit {
 
   rewards: rewardUi[] = [];
+  personals: personalUi[] = []; 
+  points: pointUI[] = []; 
 
-  constructor(
-    private RewardService: RewardService, 
-    private cd: ChangeDetectorRef, 
-    private alertCtrl: AlertController, 
-    private modalCtrl: ModalController
-  ) {
+  constructor(private RewardService: RewardService, private personalService: PersonalService, 
+    private PointService: PointService,private cd: ChangeDetectorRef, private alertCtrl: AlertController, private modalCtrl: ModalController) {
     this.RewardService.getRewards().subscribe(res => {console.log(res);
       this.rewards = res;
+      }
+    )
+     this.personalService.getPersonal().subscribe(res => {console.log(res);
+      this.personals = res;
+      }
+    )
+    this.PointService.getPoints().subscribe(res => {console.log(res);
+      this.points = res;
       }
     )
    }
@@ -89,10 +99,10 @@ export class RewardPagePage implements OnInit {
     await modal.present();
   }
 
-  async exchangeReward(reward: rewardUi) {
+  async exchangeReward(point: pointUI, reward: rewardUi) {
     const modal = await this.modalCtrl.create({
-      component: ModalPage,
-      componentProps: { id: reward.id },
+      component: PointModalPage, 
+      componentProps: { pointid: point.id, rewardid:reward.id },
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.8
     });

@@ -49,10 +49,6 @@ const routes: Routes = [
     loadChildren: () => import('./modals/modal/modal.module').then( m => m.ModalPageModule)
   },
   {
-    path: 'exchangemodal',
-    loadChildren: () => import('./exchangemodal/exchangemodal.module').then( m => m.ExchangemodalPageModule)
-  },
-  {
     path: 'overview',
     loadChildren: () => import('./pages/overview/overview.module').then( m => m.OverviewPageModule)
   },
@@ -74,12 +70,20 @@ const routes: Routes = [
   },
   {
     path: 'modal-product',
-    loadChildren: () => import('./modal-product/modal-product.module').then( m => m.ModalProductPageModule)
-  },  {
-    path: 'expense-modal',
-    loadChildren: () => import('./expense-modal/expense-modal.module').then( m => m.ExpenseModalPageModule)
+    loadChildren: () => import('./modals/modal-product/modal-product.module').then( m => m.ModalProductPageModule)
   },
-
+  {
+    path: 'expense-modal',
+    loadChildren: () => import('./modals/expense-modal/expense-modal.module').then( m => m.ExpenseModalPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./authentication/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'point-modal',
+    loadChildren: () => import('./modals/point-modal/point-modal.module').then( m => m.PointModalPageModule)
+  },
 
 
 

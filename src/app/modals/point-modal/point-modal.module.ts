@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ExchangemodalPageRoutingModule } from './exchangemodal-routing.module';
+import { PointModalPageRoutingModule } from './point-modal-routing.module';
 
-import { ExchangemodalPage } from './exchangemodal.page';
+import { PointModalPage } from './point-modal.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ExchangemodalPageRoutingModule
+    PointModalPageRoutingModule
   ],
-  declarations: [ExchangemodalPage]
+  declarations: [PointModalPage]
 })
-export class ExchangemodalPageModule {}
+export class PointModalPageModule {}

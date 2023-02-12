@@ -22,7 +22,7 @@ export class SetBudgetPage implements OnInit {
 
     this.setBudgetForm = new FormGroup({
       budget: new FormControl(0),
-      date: new FormControl('')
+      date: new FormControl(''),
     });
   }
 

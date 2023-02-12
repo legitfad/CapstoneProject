@@ -4,7 +4,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>  
+<ion-content> 
+  
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let personal of personals">
+        <ion-avatar slot="start">
+          <ion-img src="https://i.pravatar.cc/300?u=e"></ion-img>
+        </ion-avatar>
+        <ion-label id="profile-name">
+          <h1>{{personal.personalName}}</h1>
+          <h2>Budget Set: {{personal.personalBudget}}</h2>
+          <h2>Reward Point: 5000</h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
         <ion-item *ngFor="let reward of rewards" >
           <ion-col size="12" width="100%">
             <ion-card>
@@ -32,9 +48,9 @@
                     </label>
 
                   </ion-col>
-                  <ion-col text-right>
+                  <ion-col text-right *ngFor="let point of points">
                     <button ion-button clear small color="danger" icon-start class="label-bold" 
-                    (click)="exchangeReward(reward)"> 
+                    (click)="exchangeReward(point,reward)"> 
                       <ion-icon name='share'></ion-icon>
                       Exchange
                     </button>

@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
-import { ExpenseModalPage } from '../expense-modal/expense-modal.page';
+import { ExpenseModalPage } from '../modals/expense-modal/expense-modal.page';
 import { SetBudgetPage } from '../budget/set-budget/set-budget.page';
 import { Expense } from '../models/expense';
 import { Personal } from '../models/personal';
-import { expenseUi, PersonalService, personalUi } from '../services/personal.service';
+import { expenseUi, PersonalService, personalUi } from 'src/app/services/personal.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -15,7 +16,13 @@ export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
 
-  constructor(private personalService: PersonalService, private alertCtrl: AlertController, private modalController: ModalController, private toastCtrl: ToastController, private cd: ChangeDetectorRef) {
+  constructor(
+    private personalService: PersonalService, 
+    private alertCtrl: AlertController, 
+    private modalController: ModalController, 
+    private toastCtrl: ToastController, 
+    private cd: ChangeDetectorRef,
+    private authService: AuthService) {
     
     // this.expenses.forEach(prod => this.totalExpense += prod.expensePrice)
 
@@ -94,6 +101,10 @@ export class Tab1Page {
       initialBreakpoint: 0.8
     });
     await modal.present();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   ngOnInit() {

@@ -12,16 +12,16 @@ export class ModalPage implements OnInit {
   @Input() id: any;
   reward: rewardUi = null;
 
-   constructor(private dataService: RewardService, private modalCtrl: ModalController, private toastCtrl: ToastController) { }
+   constructor(private rewardservice: RewardService, private modalCtrl: ModalController, private toastCtrl: ToastController) { }
 
     ngOnInit() {
-    this.dataService.getRewardById(this.id).subscribe(res => {
+    this.rewardservice.getRewardById(this.id).subscribe(res => {
       this.reward = res;
     });
   }
 
   async deleteReward() {
-    await this.dataService.deleteReward(this.reward)
+    await this.rewardservice.deleteReward(this.reward)
     this.modalCtrl.dismiss();
 
     const toast = await this.toastCtrl.create({
@@ -33,7 +33,7 @@ export class ModalPage implements OnInit {
   }
 
   async updateReward() {
-    await this.dataService.updateReward(this.reward);
+    await this.rewardservice.updateReward(this.reward);
     this.modalCtrl.dismiss()
 
     const toast = await this.toastCtrl.create({

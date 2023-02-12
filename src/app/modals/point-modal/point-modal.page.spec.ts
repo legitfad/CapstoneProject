@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ExchangemodalPage } from './exchangemodal.page';
+import { PointModalPage } from './point-modal.page';
 
-describe('ExchangemodalPage', () => {
-  let component: ExchangemodalPage;
-  let fixture: ComponentFixture<ExchangemodalPage>;
+describe('PointModalPage', () => {
+  let component: PointModalPage;
+  let fixture: ComponentFixture<PointModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExchangemodalPage ],
+      declarations: [ PointModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ExchangemodalPage);
+    fixture = TestBed.createComponent(PointModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

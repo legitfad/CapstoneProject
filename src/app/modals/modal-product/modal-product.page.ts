@@ -1,6 +1,6 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
-import { productData, ProductService } from '../services/product.service';
+import { productData, ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-modal-product',
