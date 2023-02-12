@@ -30,7 +30,7 @@
 
   <ion-content class="ion-padding">
     <ion-button (click)="addExpense()" expand="block">Add Expense</ion-button>
-    <ion-button id="open-modal" expand="block">Personal Expenses</ion-button>
+    <ion-button id="open-modal" (click)="calcTotal()" expand="block">Personal Expenses</ion-button>
     <ion-modal
     trigger="open-modal"
     [initialBreakpoint]="0.25"
