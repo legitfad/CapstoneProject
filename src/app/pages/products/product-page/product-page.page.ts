@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
+import { first } from 'rxjs';
 import { productData, ProductService } from '../../../services/product.service';
 
 @Component({
@@ -10,19 +12,17 @@ import { productData, ProductService } from '../../../services/product.service';
 
 export class ProductPagePage implements OnInit {
 
+  public productlist: any;
   products: productData[] = [];
   productbanners: any[] = [];
   isLoading: boolean = false;
 
-  constructor(private ProductService: ProductService, private alertCtrl: AlertController) {
+  constructor(private ProductService: ProductService, private alertCtrl: AlertController, private firestore: AngularFirestore) {
     this.ProductService.getProduct().subscribe(res => {
       console.log(res);
       this.products = res;
       }
     )
-   }
-
-   option() {
    }
 
    getBanners() {
@@ -87,7 +87,6 @@ export class ProductPagePage implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoading = true;
     this.getBanners();
   }
 
