@@ -65,7 +65,7 @@ export class ProductService {
     try {
       const id = this.randomString();
       data.id = id;
-      await this.collection('ProductBanner').doc(id).set(data);
+      await this.collection('productBanner').doc(id).set(data);
     } catch(e) {
       console.log(e);
       throw(e);
@@ -74,7 +74,7 @@ export class ProductService {
 
   async getBanners() {
     try {
-      const banners = await this.collection('ProductBanner').get().pipe(
+      const banners = await this.collection('productBanner').get().pipe(
         switchMap(async(data: any) => {
           let bannerData = await data.docs.map(element => {
             const item = element.data();
