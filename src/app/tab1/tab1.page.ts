@@ -16,6 +16,8 @@ export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
   totalExpense = 0;
+  budget = 0;
+  savings = 0;
 
   constructor(
     private personalService: PersonalService, 
@@ -33,14 +35,25 @@ export class Tab1Page {
       this.expenses = res;
       }
     )
-    this.calcTotal();
+    this.calcTotalExpense();
+    this.calcSavings();
   }
 
-  calcTotal(){
+  calcTotalExpense(){
     this.totalExpense = 0;
     for (const q of this.expenses){
       this.totalExpense += Number(q.expensePrice || 0);
     }
+    return this.totalExpense;
+  }
+  
+  calcSavings(){
+    this.savings = 0;
+    for (const q of this.personals){
+      this.budget = Number(q.personalBudget || 0);
+    }
+    this.savings = this.budget - this.totalExpense;
+    return this.savings
   }
 
   async set() {
