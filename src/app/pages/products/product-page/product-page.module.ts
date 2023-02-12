@@ -8,13 +8,15 @@ import { ProductPagePageRoutingModule } from './product-page-routing.module';
 
 import { ProductPagePage } from './product-page.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ProductPagePageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [ProductPagePage]
 })

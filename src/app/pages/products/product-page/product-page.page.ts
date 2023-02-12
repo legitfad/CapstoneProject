@@ -11,6 +11,8 @@ import { productData, ProductService } from '../../../services/product.service';
 export class ProductPagePage implements OnInit {
 
   products: productData[] = [];
+  productbanners: any[] = [];
+  isLoading: boolean = false;
 
   constructor(private ProductService: ProductService, private alertCtrl: AlertController) {
     this.ProductService.getProduct().subscribe(res => {
@@ -19,6 +21,19 @@ export class ProductPagePage implements OnInit {
       }
     )
    }
+
+   option() {
+   }
+
+   getBanners() {
+    this.ProductService.getBanners().then(data => {
+      console.log(data);
+      this.productbanners = data;
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
 
    async addProduct() {
     const alert = await this.alertCtrl.create({
@@ -72,6 +87,8 @@ export class ProductPagePage implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
+    this.getBanners();
   }
 
 }

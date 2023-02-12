@@ -74,7 +74,7 @@ export class ProductService {
 
   async getBanners() {
     try {
-      const banners = await this.collection('productBanner').get().pipe(
+      const productbanners = await this.collection('productBanner').get().pipe(
         switchMap(async(data: any) => {
           let bannerData = await data.docs.map(element => {
             const item = element.data();
@@ -84,8 +84,8 @@ export class ProductService {
           return bannerData;
         })
       ).toPromise();
-      console.log(banners);
-      return banners;
+      console.log(productbanners);
+      return productbanners;
     } catch(e) {
       throw(e);
     }
