@@ -16,6 +16,9 @@ export class Tab1Page {
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
 
   constructor(private personalService: PersonalService, private alertCtrl: AlertController, private modalController: ModalController, private toastCtrl: ToastController, private cd: ChangeDetectorRef) {
+    
+    // this.expenses.forEach(prod => this.totalExpense += prod.expensePrice)
+
     this.personalService.getPersonal().subscribe(res => {console.log(res);
       this.personals = res;
       }
@@ -25,6 +28,10 @@ export class Tab1Page {
       this.expenses = res;
       }
     )
+
+    // this.personalService.total().subscribe(res => {console.log(res);
+    //   this.expenses = res;
+    // })
   }
   async set() {
     const modal = await this.modalController.create({
@@ -56,7 +63,7 @@ export class Tab1Page {
         {
           name: 'expenseDate',
           placeholder: 'Date of Expense',
-          type: 'text'
+          type: 'date'
         }
       ],
       buttons: [
@@ -88,19 +95,6 @@ export class Tab1Page {
     });
     await modal.present();
   }
-
-  // async deleteExpense(expense: expenseUi) {
-  //   this.personalService.deleteExpense(expense);
-  // }
-
-  // async updateExpense() {
-  //   await this.personalService.updateExpense(this.expense);
-  //   const toast = await this.toastCtrl.create({
-  //     message: 'Expense updated!',
-  //     duration: 2000
-  //   });
-  //   toast.present
-  // }
 
   ngOnInit() {
   }
