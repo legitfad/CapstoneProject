@@ -6,7 +6,13 @@
   
   <ion-content class="ion-padding">
   
-	<form (ngSubmit)="login()" [formGroup]="credentialsForm">
+	<form (ngSubmit)="register()" [formGroup]="credentialsForm">
+
+    <ion-item>
+    <ion-input type="text" placeholder="Enter name" 
+    name="name" formControlName="name"></ion-input>
+    </ion-item>
+
 	  <ion-item>
 		<ion-input type="email" placeholder="Email" 
 		name="email" formControlName="email"></ion-input>
@@ -17,13 +23,13 @@
 		name="password" formControlName="password"></ion-input>
 	  </ion-item>
   
-	  <ion-button color="primary" expand="full" type="submit" [disabled]="!credentialsForm.valid">
-		Login
-	  </ion-button>
-	  <ion-button color="secondary" expand="full" type="button" [routerLink]="['/register']">
+	  <ion-button color="secondary" expand="full" type="button" type="submit" [disabled]="!credentialsForm.valid">
 		Create Account
 	  </ion-button>
+    <ion-button color="primary" expand="full" [routerLink]="['/login']">
+      Back to Login
+    </ion-button>
   
 	</form>
-  </ion-content>
+</ion-content>
   

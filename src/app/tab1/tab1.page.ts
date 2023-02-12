@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { ExpenseModalPage } from '../expense-modal/expense-modal.page';
 import { SetBudgetPage } from '../budget/set-budget/set-budget.page';
 import { Expense } from '../models/expense';
 import { Personal } from '../models/personal';
 import { expenseUi, PersonalService, personalUi } from 'src/app/services/personal.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -13,10 +15,14 @@ import { expenseUi, PersonalService, personalUi } from 'src/app/services/persona
 export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
-  expense: Expense = null;
-  @Input() id: string;
 
-  constructor(private personalService: PersonalService, private alertCtrl: AlertController, private modalController: ModalController, private toastCtrl: ToastController, private cd: ChangeDetectorRef) {
+  constructor(
+    private personalService: PersonalService, 
+    private alertCtrl: AlertController, 
+    private modalController: ModalController, 
+    private toastCtrl: ToastController, 
+    private cd: ChangeDetectorRef,
+    private authService: AuthService) {
     this.personalService.getPersonal().subscribe(res => {console.log(res);
       this.personals = res;
       }
@@ -80,17 +86,18 @@ export class Tab1Page {
     await alert.present();
   }
 
-  async deleteExpense(expense: expenseUi) {
-    this.personalService.deleteExpense(expense);
+  async openExpense (expense: expenseUi) {
+    const modal = await this.modalController.create({
+      component: ExpenseModalPage,
+      componentProps: { id: expense.id },
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.8
+    });
+    await modal.present();
   }
 
-  async updateExpense() {
-    await this.personalService.updateExpense(this.expense);
-    const toast = await this.toastCtrl.create({
-      message: 'Expense updated!',
-      duration: 2000
-    });
-    toast.present
+  logout() {
+    this.authService.logout();
   }
 
   ngOnInit() {

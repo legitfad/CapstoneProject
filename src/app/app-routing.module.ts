@@ -76,6 +76,15 @@ const routes: Routes = [
     path: 'modal-product',
     loadChildren: () => import('./modal-product/modal-product.module').then( m => m.ModalProductPageModule)
   },
+  {
+    path: 'expense-modal',
+    loadChildren: () => import('./expense-modal/expense-modal.module').then( m => m.ExpenseModalPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./authentication/register/register.module').then( m => m.RegisterPageModule)
+  },
+
 
 
 

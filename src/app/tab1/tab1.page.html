@@ -1,17 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Personal Information
-    </ion-title>
+    <ion-title class="ion-text-center">Personal Info</ion-title>
+    <ion-button slot='end' fill='clear' (click)="logout()">
+      <ion-icon name="exit-outline" slot="icon-only"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Personal Information is displayed here</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <ion-list>
     <ion-item *ngFor="let personal of personals">
@@ -44,16 +45,13 @@
           </ion-label>
         </div>
         <ion-list>
-          <ion-item *ngFor="let expense of expenses">
+          <ion-item *ngFor="let expense of expenses" (click)="openExpense(expense)">
             <ion-label>
             <h2>{{expense.expenseName}}</h2>
             <p>Price: ${{expense.expensePrice}}</p>
             <p>Date of Expense: {{expense.expenseDate}}</p>
             <p>Category: {{expense.expenseCategory}}</p>
             </ion-label>
-            <ion-button slot="end" name="trash-bin" (click)="updateExpense()">Update</ion-button>
-            <br>
-            <ion-button slot="end" name="trash-bin" (click)="deleteExpense(expense)">Delete</ion-button>
           </ion-item>
         </ion-list>
       </ion-content>

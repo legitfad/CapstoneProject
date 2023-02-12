@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
+  
   credentialsForm!: FormGroup;
 
   constructor(
@@ -20,13 +21,15 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController
   ) { }
 
+
   ngOnInit() {
     this.credentialsForm = this.fb.group({
+      name: ['Name', [Validators.required]],
       email: ['test@test2.com', [Validators.email, Validators.required]],
       password: ['123456', [Validators.minLength(6), Validators.required]]
     })
   }
- 
+
   async register() {
     const loading = await this.loadingCtrl.create();
     await loading.present();
@@ -46,23 +49,4 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async login() {    
-    const loading = await this.loadingCtrl.create();
-    await loading.present();
- 
-    this.authSvc.login(this.credentialsForm.value).then(user => {
-      console.log(user);
-      loading.dismiss();
-      this.router.navigateByUrl('/', { replaceUrl: true });
-    }, async err => {
-      await loading.dismiss();
- 
-      const alert = await this.alertCtrl.create({
-        header: 'Error',
-        message: err.message,
-        buttons: ['OK']
-      });
-      await alert.present();
-    });
-  }
 }

@@ -29,7 +29,7 @@ export interface User {
 })
 export class DataService {
   currentUser: User = null;
-  allAdverts: Advert[] = [];
+  // allAdverts: Advert[] = [];
 
   constructor(
     private afs: AngularFirestore, 

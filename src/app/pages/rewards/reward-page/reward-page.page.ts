@@ -71,7 +71,7 @@ export class RewardPagePage implements OnInit {
               rewardImage: res.rewardImage, 
               rewardDetail: res.rewardDetail, 
               rewardCategory: res.rewardCategory });
-                  }
+            }
         }
       ]
     });

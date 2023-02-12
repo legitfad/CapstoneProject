@@ -24,12 +24,12 @@
         <ion-img [src]="advert.file"></ion-img>
         <ion-card-header>
           <ion-card-title>{{ advert.title }}</ion-card-title>
-          <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          <ion-card-subtitle>{{ advert.startDate | date: 'dd.MM.yyyy' }} to {{ advert.endDate | date: 'dd.MM.yyyy' }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
           {{ advert.desc }}
         </ion-card-content>
       </ion-card>
   </ion-item>
-   
+    
 </ion-content>
