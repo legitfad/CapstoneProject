@@ -16,7 +16,6 @@ export class Tab1Page {
   personals: personalUi[] = []; // For Setting Budget
   expenses: expenseUi[] = []; // For Personal Expenses for each Item Bought
   totalExpense = 0;
-  sumA = 0;
 
   constructor(
     private personalService: PersonalService, 
@@ -26,26 +25,24 @@ export class Tab1Page {
     private cd: ChangeDetectorRef,
     private authService: AuthService) {
     
-    // this.expenses.forEach(prod => this.totalExpense += prod.expensePrice)
-
     this.personalService.getPersonal().subscribe(res => {console.log(res);
       this.personals = res;
       }
     )
-
     this.personalService.getExpense().subscribe(res => {console.log(res);
       this.expenses = res;
       }
     )
-
-    // this.totalExpense = this.personalService.total();
+    this.calcTotal();
   }
 
-  async calcTotal(){
+  calcTotal(){
+    this.totalExpense = 0;
     for (const q of this.expenses){
-      this.sumA += Number(q.expensePrice || 0);
+      this.totalExpense += Number(q.expensePrice || 0);
     }
   }
+
   async set() {
     const modal = await this.modalController.create({
     component: SetBudgetPage,
@@ -109,12 +106,7 @@ export class Tab1Page {
     await modal.present();
   }
 
-  
-
   logout() {
     this.authService.logout();
-  }
-
-  ngOnInit() {
   }
 }
