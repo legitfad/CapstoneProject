@@ -31,8 +31,8 @@
       </ion-item>
     </ion-list>
   </div>
-
-        <ion-item *ngFor="let reward of filteredRewards" >
+  
+        <ion-item *ngFor="let reward of filteredRewards">
           <ion-col size="12" width="100%">
             <ion-card>
               <img src="{{ reward.rewardImage }}" class="image-size"/>
@@ -66,6 +66,7 @@
                       Exchange
                     </button>
                   </ion-col>
+
                   
                   <ion-col text-right>
                     <button ion-button clear small color="danger" icon-start class="label-bold" 
@@ -86,6 +87,7 @@
           <ion-fab-button (click)="addReward()">
             <ion-icon name="add"></ion-icon>
           </ion-fab-button>
+
         </ion-fab>
 
 </ion-content>

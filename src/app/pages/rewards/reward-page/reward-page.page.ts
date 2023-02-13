@@ -5,8 +5,8 @@ import { PersonalService, personalUi } from '../../../services/personal.service'
 import { PointService, pointUI } from '../../../services/point.service';
 import { ModalPage } from '../../../modals/modal/modal.page';
 import { PointModalPage } from '../../../modals/point-modal/point-modal.page';
-
-
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { AdvertUI, DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -16,10 +16,12 @@ import { PointModalPage } from '../../../modals/point-modal/point-modal.page';
 })
 export class RewardPagePage implements OnInit {
 
+  rewardUI:rewardUi;
   rewards: rewardUi[] = [];
   filteredRewards: rewardUi[];
   personals: personalUi[] = []; 
   points: pointUI[] = []; 
+  capturedImage = null;
 
   constructor(private RewardService: RewardService, private personalService: PersonalService, 
     private PointService: PointService,private cd: ChangeDetectorRef, private alertCtrl: AlertController, private modalCtrl: ModalController) {
@@ -36,9 +38,6 @@ export class RewardPagePage implements OnInit {
       }
     )
    }
-    filterData(category: string) {
-    this.filteredRewards = this.rewards.filter(reward => reward.rewardCategory === category);
-}
 
     async addReward() {
     const alert = await this.alertCtrl.create({
@@ -47,7 +46,7 @@ export class RewardPagePage implements OnInit {
         {
           name: 'rewardName',
           placeholder: 'Reward Name',
-          type: 'text'
+          type: 'text',
         },
         {
           name: 'rewardCost',
@@ -74,6 +73,11 @@ export class RewardPagePage implements OnInit {
       ],
       buttons: [
         {
+          text: 'image',
+          handler:res => {
+            this.addImage();
+            }
+        },{
           text: 'Cancel',
           role: 'cancel'
         }, {
@@ -113,9 +117,24 @@ export class RewardPagePage implements OnInit {
 
     await modal.present();
   }
-  
-  ngOnInit() {
+
+  async addImage() {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: true,
+      source: CameraSource.Photos,
+      resultType: CameraResultType.Base64
+    });
+    console.log('result: ', image);
+    this.capturedImage = `data:image/jpeg;base64,${image.base64String}`;
+    this.rewardUI.rewardImage = image.base64String;
   }
   
-
+  ngOnInit() {
+   
+  }
+   filterData(category: string) {
+    this.filteredRewards = this.rewards.filter(reward => reward.rewardCategory === category);
+}
+  
 }
