@@ -20,9 +20,22 @@
       </ion-slide>
     </ion-slides>
 
-    <ion-item *ngFor="let product of products">
+    &nbsp;
+
+    <ion-list>
+      <ion-item>
+        <ion-select #productcat placeholder="Filter By Category" (ionChange)="filterData(productcat.value)" >
+          <ion-select-option value="Computer">Computer</ion-select-option>
+          <ion-select-option value="clothes">Clothes</ion-select-option>
+          <ion-select-option value="Shoe">Shoe</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-item *ngFor="let product of filteredproducts">
 
       <img src="{{ product.productImage }}" class="image-size"/>
+
       
       <ion-card>
         <ion-card-content>

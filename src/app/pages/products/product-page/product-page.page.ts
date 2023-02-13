@@ -15,6 +15,7 @@ export class ProductPagePage implements OnInit {
   public productlist: any;
   products: productData[] = [];
   productbanners: any[] = [];
+  filteredproducts: productData[];
   isLoading: boolean = false;
 
   constructor(private ProductService: ProductService, private alertCtrl: AlertController, private firestore: AngularFirestore) {
@@ -24,6 +25,10 @@ export class ProductPagePage implements OnInit {
       }
     )
    }
+
+   filterData(productCategory: string) {
+    this.filteredproducts = this.products.filter(product => product.productCategory === productCategory);
+}
 
    getBanners() {
     this.ProductService.getBanners().then(data => {
