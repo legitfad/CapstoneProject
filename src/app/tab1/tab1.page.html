@@ -30,7 +30,6 @@
   </ion-list>
 
   <ion-content class="ion-padding">
-    <ion-button (click)="addExpense()" expand="block">Add Expense</ion-button>
     <ion-button id="open-modal" expand="block">Personal Expenses</ion-button>
     <ion-modal
     trigger="open-modal"
@@ -41,16 +40,17 @@
     <ng-template>
       <ion-content class="ion-padding">
         <div class="ion-margin-top">
-          <ion-label>
-            <h1>My Personal Expenses {{calcTotalExpense()}}</h1>
-          </ion-label>
+          <ion-toolbar>
+            <ion-title slot="start">Total Expenses: {{calcTotalExpense()}}</ion-title>
+            <ion-button slot="end" color="primary" (click)="addExpense()">Add</ion-button>
+          </ion-toolbar>
         </div>
         <ion-list>
           <ion-item *ngFor="let expense of expenses" (click)="openExpense(expense)">
             <ion-label>
             <h2>{{expense.expenseName}}</h2>
             <p>Price: ${{expense.expensePrice}}</p>
-            <p>Date of Expense: {{expense.expenseDate}}</p>
+            <p>Date of Expense: {{expense.expenseDate | date: "dd-MM-yyyy"}}</p>
             <p>Category: {{expense.expenseCategory}}</p>
             </ion-label>
           </ion-item>

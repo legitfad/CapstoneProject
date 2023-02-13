@@ -36,6 +36,9 @@ export class Tab1Page {
       }
     )
     this.calcTotalExpense();
+  }
+
+  ngAfterContentInit(){
     this.calcSavings();
   }
 
@@ -96,7 +99,7 @@ export class Tab1Page {
         }, {
           text: 'Add',
           handler: res => {
-            this.personalService.addExpense({ 
+            this.personalService.addExpense({
               expenseName: res.expenseName, 
               expenseCategory: res.expenseCategory,
               expensePrice: res.expensePrice,
