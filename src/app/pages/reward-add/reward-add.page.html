@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reward Add</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div >
+    <ion-list>
+    <ion-item>
+      <ion-input [(ngModel)]="rewardUI.rewardName" placeholder="Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="rewardUI.rewardCost" placeholder="Cost"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="rewardUI.rewardCategory" placeholder="Category"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <div class="image-upload" (click)="addImage()" tappable>
+        <p class="upload-text" *ngIf="!capturedImage">
+          <ion-icon name="image"></ion-icon>
+          Add your image
+        </p>
+        <img [src]="capturedImage" *ngIf="capturedImage">
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [(ngModel)]="rewardUI.rewardDetail" placeholder="Detail"></ion-input>
+    </ion-item>
+  </ion-list>
+
+    <ion-button (click)="save()" >
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+
+  </div>
+
+
+  <div>
+    <ion-list>
+      <ion-item>
+        <ion-select #rewardCat placeholder="Filter By Category" (ionChange)="filterData(rewardCat.value)">
+          <ion-select-option value="Home">Home</ion-select-option>
+          <ion-select-option value="Food">Food</ion-select-option>
+          <ion-select-option value="Drink">Drink</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="showall">
+    <ion-item *ngFor="let reward of rewards" >
+      <ion-col size="12" width="100%">
+        <ion-card>
+          <img src="{{ reward.rewardImage }}" class="image-size" />
+          <ion-card-content>
+            <ion-card-title>
+              {{ reward.rewardName }}
+            </ion-card-title>
+            <p>
+              {{ reward.rewardDetail }}
+            </p>
+    
+            <ion-row no-padding>
+    
+              <ion-col text-center>
+                <label icon-start>
+                  <ion-icon name='cash'></ion-icon>
+                  {{ reward.rewardCost}} Point
+                </label>
+    
+              </ion-col>
+              <ion-col text-right>
+                <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openRedeem(reward)">
+                  <ion-icon name='share'></ion-icon>
+                  Redeem
+                </button>
+              </ion-col>
+    
+    
+              <ion-col text-right>
+                <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openReward(reward)">
+                  <ion-icon name='build'></ion-icon>
+                  Edit
+                </button>
+              </ion-col>
+    
+    
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-item>
+  </div>
+  
+
+  <ion-item *ngFor="let reward of filteredRewards">
+    <ion-col size="12" width="100%">
+      <ion-card>
+        <img src="{{ reward.rewardImage }}" class="image-size" />
+        <ion-card-content>
+          <ion-card-title>
+            {{ reward.rewardName }}
+          </ion-card-title>
+          <p>
+            {{ reward.rewardDetail }}
+          </p>
+
+          <ion-row no-padding>
+
+            <ion-col text-center>
+              <label icon-start>
+                <ion-icon name='cash'></ion-icon>
+                {{ reward.rewardCost}} Point
+              </label>
+
+            </ion-col>
+            <ion-col text-right>
+              <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openRedeem(reward)">
+                <ion-icon name='share'></ion-icon>
+                Redeem
+              </button>
+            </ion-col>
+
+
+            <ion-col text-right>
+              <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openReward(reward)">
+                <ion-icon name='build'></ion-icon>
+                Edit
+              </button>
+            </ion-col>
+
+
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-item>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="false">
+    <ion-fab-button (click)="addReward()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

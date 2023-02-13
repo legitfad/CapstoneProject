@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc, serverTimestamp, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc, serverTimestamp, query, where, arrayUnion } from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage, uploadString } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
@@ -13,6 +13,7 @@ import { user } from '@angular/fire/auth';
 
 export interface AdvertUI {
   id?: string;
+  brand: string;
   title: string;
   file: string;
   desc: string;
@@ -95,6 +96,7 @@ export class DataService {
 
     const messages = await addDoc(collection(this.firestore, 'advert'), {
       title: advert.title,
+      brand: advert.brand,
       uid: userId,
       owner: displayName,
       email: email,
@@ -132,6 +134,5 @@ export class DataService {
   //     })
   //   )
   // }
- 
  
 }

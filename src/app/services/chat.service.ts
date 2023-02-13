@@ -13,7 +13,12 @@ import { AuthService } from './auth.service';
 export class ChatService {
   logout$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private firestore: Firestore, private auth: AuthService, private storage: Storage, private firebaseAuth: Auth) {
+  constructor(
+    private firestore: Firestore, 
+    private auth: AuthService, 
+    private storage: Storage, 
+    private firebaseAuth: Auth
+  ) {
     onAuthStateChanged(this.firebaseAuth, user => {
       if (!user) {
         this.logout$.next(true);

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Expense</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-circle-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addExpenseForm">
+    <ion-item>
+      <ion-label>Product Name: </ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Product Category: </ion-label>
+      <ion-select formControlName="category" placeholder="Select Category">
+        <ion-select-option value="Fashion">Fashion</ion-select-option>
+        <ion-select-option value="Electronics">Electronics</ion-select-option>
+        <ion-select-option value="Furniture">Furniture</ion-select-option>
+        <ion-select-option value="Apps & Games">Apps & Games</ion-select-option>
+        <ion-select-option value="Beauty / Health">Beauty / Health</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Product Price: </ion-label>
+      <ion-input type="number" formControlName="price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Expense Date: </ion-label>
+      <ion-input type="date" formControlName="date"></ion-input>
+    </ion-item>
+    <ion-button expand="block" color="secondary" type="submit" (click)="add()">
+      Set
+    </ion-button>
+ </form>
+</ion-content>
