@@ -25,8 +25,8 @@ export class ModalPage implements OnInit {
     this.modalCtrl.dismiss();
 
     const toast = await this.toastCtrl.create({
-      message: 'Reward Deleted!.',
-      duration: 100
+      message: 'Reward Deleted!',
+      duration: 600
     });
     toast.present();
   
@@ -37,8 +37,8 @@ export class ModalPage implements OnInit {
     this.modalCtrl.dismiss()
 
     const toast = await this.toastCtrl.create({
-      message: 'Reward updated!.',
-      duration: 100
+      message: 'Reward updated!',
+      duration: 600
     });
     toast.present();
 

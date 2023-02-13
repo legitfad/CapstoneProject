@@ -101,6 +101,10 @@ const routes: Routes = [
     path: 'add-advert-product',
     loadChildren: () => import('./pages/adverts/add-advert-product/add-advert-product.module').then( m => m.AddAdvertProductPageModule)
   },
+  {
+    path: 'reward-add',
+    loadChildren: () => import('./pages/reward-add/reward-add.module').then( m => m.RewardAddPageModule)
+  },
 
 
  
