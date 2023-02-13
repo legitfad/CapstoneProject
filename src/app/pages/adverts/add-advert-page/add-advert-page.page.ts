@@ -13,7 +13,6 @@ export class AddAdvertPagePage implements OnInit {
 
   advert: AdvertUI = {
     title: '',
-    brand: '',
     file: '', 
     desc: '',
     startDate:'',

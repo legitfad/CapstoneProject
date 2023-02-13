@@ -5,16 +5,18 @@
 </ion-header>
 
 <ion-content>
-
-  <div *ngFor="let personal of personals">
+  <div *ngIf="point">
     <ion-item>
       <ion-label position="stacked">My Point</ion-label>
-      <ion-input #mypoint [readonly]="isReadonly()">
-      {{ personal.personalPoint }}
-      </ion-input>
+      <ion-input [(ngModel)]="point.point"  [readonly]="isReadonly()"></ion-input>
     </ion-item>
-  </div>
   
+    <ion-item>
+      <ion-label position="stacked">Purpose</ion-label>
+      <ion-input [(ngModel)]="point.purpose" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+  </div>
   <div *ngIf="reward">
     <ion-item>
       <ion-label position="stacked">Reward Name</ion-label>
@@ -22,38 +24,21 @@
     </ion-item>
   
     <ion-item>
+      <ion-label position="stacked">Reward Category</ion-label>
+      <ion-input [(ngModel)]="reward.rewardCategory" [readonly]="isReadonly()" rows="8"></ion-input>
+    </ion-item>
+  
+    <ion-item>
       <ion-label position="stacked">Point Cost</ion-label>
       <ion-input [(ngModel)]="reward.rewardCost" [readonly]="isReadonly()" rows="8"></ion-input>
     </ion-item>
-
-    <div>
-      <ion-item>
-        <ion-label position="stacked">Purpose</ion-label>
-        <ion-input Value="Redeem" [readonly]="isReadonly()" rows="8"></ion-input>
-      </ion-item>
-    </div>
-
+  
     <ion-item>
       <ion-label position="stacked">Reward Details</ion-label>
       <ion-textarea [(ngModel)]="reward.rewardDetail" [readonly]="isReadonly()" rows="8"></ion-textarea>
     </ion-item>
-
-    <ion-item class="visibly-hidden">
-      <ion-label  position="stacked" >Reward ID</ion-label>
-      <ion-input  [(ngModel)]="reward.id" [readonly]="isReadonly()" rows="8"></ion-input>
-    </ion-item>
+  
   </div>
 
-  <div>
-    <ion-button expand="block" color="success" (click)="redeemReward()" >
-      <ion-icon name="save" slot="start"></ion-icon>
-      Redeem
-    </ion-button>
-
-    <ion-button expand="block" color="danger" (click)="cancelReward()">
-      <ion-icon name="trash" slot="start"></ion-icon>
-      Cancel
-    </ion-button>
-  </div>
 
 </ion-content>

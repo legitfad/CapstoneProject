@@ -7,8 +7,8 @@ export interface personalUi {
   personalName: string;
   personalBudget: number;
   personalResetDate: string;
-  personalPoint: number;
   personalId?: string;
+  personalPoint: number;
 }
 
 export interface expenseUi {
@@ -35,10 +35,7 @@ export class PersonalService {
     const PersonalDocRef = collection(this.firestore, 'personal');
     return collectionData(PersonalDocRef, {idField: 'id'}) as Observable<personalUi[]>;
   }
-  getPersonalId(personalId: any): Observable<personalUi> {
-    const PersonalDocRef = doc(this.firestore, `personal/${personalId}`);
-    return docData(PersonalDocRef, { idField: 'personalId' }) as Observable<personalUi>;
-  }
+
   // getPersonal(): Personal[] {
   //   return this.personal;
   // }

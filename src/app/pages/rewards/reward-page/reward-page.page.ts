@@ -22,7 +22,6 @@ export class RewardPagePage implements OnInit {
   personals: personalUi[] = []; 
   points: pointUI[] = []; 
   capturedImage = null;
-  showall = null;
 
   constructor(private RewardService: RewardService, private personalService: PersonalService, 
     private PointService: PointService,private cd: ChangeDetectorRef, private alertCtrl: AlertController, private modalCtrl: ModalController) {
@@ -108,10 +107,10 @@ export class RewardPagePage implements OnInit {
     await modal.present();
   }
 
-  async openRedeem( reward: rewardUi) {
+  async exchangeReward(point: pointUI, reward: rewardUi) {
     const modal = await this.modalCtrl.create({
       component: PointModalPage, 
-      componentProps: { rewardid:reward.id },
+      componentProps: { pointid: point.id, rewardid:reward.id },
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.8
     });
@@ -132,10 +131,9 @@ export class RewardPagePage implements OnInit {
   }
   
   ngOnInit() {
-  this.showall = true;
+   
   }
    filterData(category: string) {
-    this.showall = false;
     this.filteredRewards = this.rewards.filter(reward => reward.rewardCategory === category);
 }
   

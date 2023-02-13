@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { AdvDetailPage } from 'src/app/modals/adv-detail/adv-detail.page';
-import { AuthService } from 'src/app/services/auth.service';
 import { AdvertUI, DataService } from '../../../services/data.service';
 
 @Component({
@@ -17,8 +16,11 @@ export class AdvertiserPagePage implements OnInit {
 
   constructor(
     private data: DataService, 
+    private cd: ChangeDetectorRef,
+    private alerts: AlertController, 
     private modal: ModalController,
-    private authService: AuthService,
+    private toastCtrl: ToastController,
+    private db: AngularFirestore,
   ) { 
       this.data.getAds().subscribe(res => {console.log(res);
       this.adverts = res.filter(advert => advert.email === this.data.currentUser.email)
@@ -45,9 +47,6 @@ export class AdvertiserPagePage implements OnInit {
     await modal.present();
   }
 
-  logout() {
-    this.authService.logout();
-  }
  
  
 

@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content> 
+  
   <div>
     <ion-list>
       <ion-item *ngFor="let personal of personals">
@@ -31,51 +32,6 @@
     </ion-list>
   </div>
   
-<div *ngIf="showall">
-  <ion-item *ngFor="let reward of rewards">
-    <ion-col size="12" width="100%">
-      <ion-card>
-        <img src="{{ reward.rewardImage }}" class="image-size" />
-        <ion-card-content>
-          <ion-card-title>
-            {{ reward.rewardName }}
-          </ion-card-title>
-          <p>
-            {{ reward.rewardDetail }}
-          </p>
-
-          <ion-row no-padding>
-
-            <ion-col text-center>
-              <label icon-start>
-                <ion-icon name='cash'></ion-icon>
-                {{ reward.rewardCost}} Point
-              </label>
-
-            </ion-col>
-            <ion-col text-right>
-              <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openRedeem(reward)">
-                <ion-icon name='share'></ion-icon>
-                Redeem
-              </button>
-            </ion-col>
-
-
-            <ion-col text-right>
-              <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openReward(reward)">
-                <ion-icon name='build'></ion-icon>
-                Edit
-              </button>
-            </ion-col>
-
-
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-item>
-</div>
-
         <ion-item *ngFor="let reward of filteredRewards">
           <ion-col size="12" width="100%">
             <ion-card>
@@ -88,26 +44,50 @@
                           {{ reward.rewardDetail }}
                 </p>
 
-                <ion-row no-padding>             
+                <ion-row no-padding>
+                  <ion-col >
+                    <label icon-start>
+                      <ion-icon name='apps'></ion-icon>
+                    {{ reward.rewardCategory }}
+                    </label>
+                  </ion-col>
 
                   <ion-col text-center>
                     <label icon-start >
                       <ion-icon name='cash'></ion-icon>
-                      {{ reward.rewardCost}} Point
+                      $ {{ reward.rewardCost}}
                     </label>
 
                   </ion-col>
-                  <ion-col text-right >
+                  <ion-col text-right *ngFor="let point of points">
                     <button ion-button clear small color="danger" icon-start class="label-bold" 
-                    (click)="openRedeem(reward)"> 
+                    (click)="exchangeReward(point,reward)"> 
                       <ion-icon name='share'></ion-icon>
-                      Redeem
+                      Exchange
                     </button>
                   </ion-col>
-                                 
+
+                  
+                  <ion-col text-right>
+                    <button ion-button clear small color="danger" icon-start class="label-bold" 
+                    (click)="openReward(reward)">
+                      <ion-icon name='build'></ion-icon>
+                      Edit
+                    </button>
+                  </ion-col>
+                  
+
                 </ion-row>
               </ion-card-content>
             </ion-card>
           </ion-col>
         </ion-item>    
+
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click)="addReward()">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+
+        </ion-fab>
+
 </ion-content>

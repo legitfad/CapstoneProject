@@ -23,7 +23,7 @@
   </ion-header>
 
    <ion-item *ngFor="let advert of adverts" >
-    <ion-card [routerLink]="[advert.id]">
+    <ion-card>
         <ion-img [src]="advert.file"></ion-img>
         <ion-card-header>
           <ion-card-title>{{ advert.title }}</ion-card-title>

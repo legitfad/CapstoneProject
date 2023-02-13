@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export interface rewardUi {
   id?: string;
   rewardName: string;
-  rewardCost: number;
+  rewardCost: string;
   rewardImage: String;
   rewardDetail: string;
   rewardCategory: string;
@@ -50,6 +50,5 @@ export class RewardService {
       rewardDetail: Reward.rewardDetail, 
       rewardCategory: Reward.rewardCategory });
   }
-
 }
 
