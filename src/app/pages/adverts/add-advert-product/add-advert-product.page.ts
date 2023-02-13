@@ -2,22 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { LoadingController } from '@ionic/angular';
-import { AdvertUI, DataService } from 'src/app/services/data.service';
+import { AdvertProdUI, AdvProdService } from 'src/app/services/adv-prod.service';
 
 @Component({
-  selector: 'app-add-advert-page',
-  templateUrl: './add-advert-page.page.html',
-  styleUrls: ['./add-advert-page.page.scss'],
+  selector: 'app-add-advert-product',
+  templateUrl: './add-advert-product.page.html',
+  styleUrls: ['./add-advert-product.page.scss'],
 })
-export class AddAdvertPagePage implements OnInit {
+export class AddAdvertProductPage implements OnInit {
 
-  advert: AdvertUI = {
-    title: '',
-    brand: '',
+  product: AdvertProdUI = {
+    name: '',
     file: '', 
     desc: '',
-    startDate:'',
-    endDate: '',
+    brand: '',
     owner: '',
     email: '',
     uid: '',
@@ -25,7 +23,7 @@ export class AddAdvertPagePage implements OnInit {
 
   capturedImage = null;
 
-  constructor(private dataService: DataService, 
+  constructor(private dataService: AdvProdService, 
     private loadingController: LoadingController, 
     private router: Router) { }
 
@@ -41,19 +39,18 @@ export class AddAdvertPagePage implements OnInit {
     });
     console.log('result: ', image);
     this.capturedImage = `data:image/jpeg;base64,${image.base64String}`;
-    this.advert.file = image.base64String;
+    this.product.file = image.base64String;
   }
 
   async save() {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.dataService.addFileAdv(this.advert).then(() => {
+    this.dataService.addFileAdv(this.product).then(() => {
       loading.dismiss();
       this.router.navigateByUrl('/advertiser-page');
     });
   }
    
-  
 
 }

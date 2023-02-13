@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AdvertUI, DataService } from 'src/app/services/data.service';
 
@@ -15,7 +16,8 @@ export class AdvDetailPage implements OnInit {
    constructor(
     private dataService: DataService, 
     private modalCtrl: ModalController, 
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private router: Router,
   ) { }
 
     ngOnInit() {
@@ -45,6 +47,11 @@ export class AdvDetailPage implements OnInit {
     });
     toast.present();
 
+  }
+
+  addProducts() {
+    this.router.navigateByUrl('/add-advert-product');
+    this.modalCtrl.dismiss();
   }
 
 }

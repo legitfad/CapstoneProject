@@ -94,6 +94,18 @@ const routes: Routes = [
   },
 
 
+  },
+  {
+    path: 'tabs/tab2/:advertid',
+    loadChildren: () => import('./pages/adverts/product-collection/product-collection.module').then( m => m.ProductCollectionPageModule)
+  },
+  {
+    path: 'add-advert-product',
+    loadChildren: () => import('./pages/adverts/add-advert-product/add-advert-product.module').then( m => m.AddAdvertProductPageModule)
+  },
+
+
+ 
   
 
 ];
