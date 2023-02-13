@@ -18,6 +18,7 @@ export class Tab1Page {
   totalExpense = 0;
   budget = 0;
   savings = 0;
+  savingStatus: boolean = false;
 
   constructor(
     private personalService: PersonalService, 
@@ -36,7 +37,15 @@ export class Tab1Page {
       }
     )
     this.calcTotalExpense();
+<<<<<<< Updated upstream
+=======
+    this.checkSavings();
+  }
+
+  ngAfterContentInit(){
+>>>>>>> Stashed changes
     this.calcSavings();
+    this.checkSavings();
   }
 
   calcTotalExpense(){
@@ -56,6 +65,15 @@ export class Tab1Page {
     return this.savings
   }
 
+  checkSavings(){
+    if(this.totalExpense > this.budget) {
+      this.savingStatus = true;
+    }
+    else {
+      this.savingStatus = false;
+    }
+  }
+
   async set() {
     const modal = await this.modalController.create({
     component: SetBudgetPage,
@@ -65,48 +83,12 @@ export class Tab1Page {
   }
 
   async addExpense() {
-    const alert = await this.alertCtrl.create({
-      header: 'Add Expense',
-      inputs: [
-        {
-          name: 'expenseName',
-          placeholder: 'Name of Product',
-          type: 'text'
-        },
-        {
-          name: 'expenseCategory',
-          placeholder: 'Category of Product',
-          type: 'text'
-        },
-        {
-          name: 'expensePrice',
-          placeholder: 'Price of Product',
-          type: 'number'
-        },
-        {
-          name: 'expenseDate',
-          placeholder: 'Date of Expense',
-          type: 'date'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Add',
-          handler: res => {
-            this.personalService.addExpense({ 
-              expenseName: res.expenseName, 
-              expenseCategory: res.expenseCategory,
-              expensePrice: res.expensePrice,
-              expenseDate: res.expenseDate 
-            });
-          }
-        }
-      ]
-    });
-    await alert.present();
+    const modal = await this.modalController.create({
+      component: AddExpenseModalPage,
+      cssClass: 'modal-wrapper'
+      });
+      this.checkSavings();
+      return await modal.present();
   }
 
   async openExpense (expense: expenseUi) {
@@ -116,6 +98,7 @@ export class Tab1Page {
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.8
     });
+    this.checkSavings();
     await modal.present();
   }
 
