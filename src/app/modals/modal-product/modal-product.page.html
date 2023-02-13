@@ -27,6 +27,11 @@
     <ion-input [(ngModel)]="product.productPrice" rows="8"></ion-input>
   </ion-item>
 
+  <ion-item>
+    <ion-label position="stacked">Product Image</ion-label>
+    <ion-input [(ngModel)]="product.productImage" rows="8"></ion-input>
+  </ion-item>
+
   <ion-button expand="block" color="success" (click)="updateProduct()">
     <ion-icon name="save" slot="start"></ion-icon>
     Update
