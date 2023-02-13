@@ -7,7 +7,7 @@ export interface rewardUi {
   id?: string;
   rewardName: string;
   rewardCost: string;
-  rewardImage: string;
+  rewardImage: String;
   rewardDetail: string;
   rewardCategory: string;
 }
