@@ -88,7 +88,11 @@ const routes: Routes = [
   {
     path: 'control',
     loadChildren: () => import('./admin/control/control.module').then( m => m.ControlPageModule)
+  },  {
+    path: 'add-expense-modal',
+    loadChildren: () => import('./add-expense-modal/add-expense-modal.module').then( m => m.AddExpenseModalPageModule)
   },
+
 
   
 
