@@ -88,9 +88,19 @@ const routes: Routes = [
   {
     path: 'control',
     loadChildren: () => import('./admin/control/control.module').then( m => m.ControlPageModule)
+  },  {
+    path: 'cart-page',
+    loadChildren: () => import('./pages/cart/cart-page/cart-page.module').then( m => m.CartPagePageModule)
+  },
+  {
+    path: 'add-cart-page',
+    loadChildren: () => import('./pages/cart/add-cart-page/add-cart-page.module').then( m => m.AddCartPagePageModule)
+  },
+  {
+    path: 'modal-cart',
+    loadChildren: () => import('./modals/modal-cart/modal-cart.module').then( m => m.ModalCartPageModule)
   },
 
-  
 
 ];
 @NgModule({

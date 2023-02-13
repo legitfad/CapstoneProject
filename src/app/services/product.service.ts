@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable, switchMap } from 'rxjs';
 
+
 export interface productData {
   id?: string;
   productName: string;
@@ -13,11 +14,13 @@ export interface productData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 
 
 export class ProductService {
+
+  products: Observable<any[]>; // Testing
 
   constructor(private firestore: Firestore, private adb: AngularFirestore) { }
 

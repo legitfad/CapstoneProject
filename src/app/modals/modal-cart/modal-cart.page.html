@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modal-cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="cart">
+    <ion-item>
+      <ion-label position="stacked">Product Name</ion-label>
+      <ion-input [(ngModel)]="cart.productName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Product Price</ion-label>
+      <ion-input [(ngModel)]="cart.productPrice"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Quantity</ion-label>
+      <ion-input [(ngModel)]="cart.Quantity"></ion-input>
+    </ion-item>
+
+  </div>
+
+  <ion-button expand="block" color="success" (click)="updateCart()">
+    <ion-icon name="save" slot="start"></ion-icon>
+    Update
+  </ion-button>
+
+  <ion-button expand="block" color="danger" (click)="deleteCart()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Delete
+  </ion-button>
+
+</ion-content>

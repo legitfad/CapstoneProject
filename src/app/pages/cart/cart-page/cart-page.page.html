@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item *ngFor="let cart of carts">
+
+   <ion-col size="12" width="100%">
+
+    <ion-card (click)="openCart(cart)">
+
+      <ion-card-content>
+        <ion-card-title>
+
+          <ion-label>
+          {{ cart.productName }}
+          </ion-label>
+
+        </ion-card-title>
+
+        <ion-row no-padding>
+          <ion-col>
+            <label icon-start>
+              <ion-icon name='cash-outline'></ion-icon>
+                {{ cart.productPrice }}
+            </label>
+          </ion-col>
+        </ion-row>
+
+        <ion-col text-center>
+          <label icon-start>
+            <ion-icon name='basket-outline'></ion-icon>
+          {{ cart.Quantity }}
+          </label>
+        </ion-col>
+
+
+
+
+      </ion-card-content>
+    
+    </ion-card>
+
+   </ion-col>
+
+  </ion-item>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/add-cart-page">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>

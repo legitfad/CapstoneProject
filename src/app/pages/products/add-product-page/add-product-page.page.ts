@@ -20,6 +20,7 @@ export class AddProductPagePage implements OnInit {
       }
     )
   }
+
   async addProduct() {
     const alert = await this.alertCtrl.create({
       header: 'Add Product',
@@ -81,6 +82,8 @@ export class AddProductPagePage implements OnInit {
 
     await modal.present();
   }
+
+ 
 
 
   ngOnInit() {}

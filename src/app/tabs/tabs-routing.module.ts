@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/rewards/reward-page/reward-page.module').then(m => m.RewardPagePageModule)
       },
       {
+        path: 'cart-page',
+        loadChildren: () => import('../pages/cart/cart-page/cart-page.module').then(m => m.CartPagePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

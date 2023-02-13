@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Add Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-input [(ngModel)]="cart.productName" placeholder="Name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="cart.productPrice" placeholder="Price"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="cart.Quantity" placeholder="Quantity"></ion-input>
+  </ion-item>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="save()" [disabled]="cart.productName == '' ">
+      <ion-icon name="checkmark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> 
+
+</ion-content>
+
+ 
+
+

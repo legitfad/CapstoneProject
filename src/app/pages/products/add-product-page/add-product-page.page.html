@@ -3,6 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/control"></ion-back-button>
     </ion-buttons>
+    
     <ion-buttons slot="end">
       <ion-button fill="clear" [routerLink]="['/add-productbanner-page']">
         <ion-icon slot="icon-only" name="image-outline" padding=10px></ion-icon>
@@ -54,18 +55,19 @@
               <button ion-button clear small color="danger" icon-start class="label-bold" (click)="openProduct(product)">
                 <ion-icon name='build'></ion-icon>
                 Edit
-            </button>
+              </button>
             </ion-col>
+         
           </ion-row>
         </ion-card-content>
        </ion-card>
       </ion-col>
     </ion-item>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addProduct()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="addProduct()">
+        <ion-icon name="Add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
 </ion-content>
