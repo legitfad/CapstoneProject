@@ -52,13 +52,24 @@ export class LoginPage implements OnInit {
  
     this.authSvc.login(this.credentialsForm.value).then(user => {
       console.log(user);
+
+      let router = (user.user.displayName === 'admin') ? '/control' :
+      (user.user.displayName === 'Admin123') ? '/control' :
+      (user.user.displayName === 'Admin223') ? '/control' :
+      (user.user.displayName === 'Admin323') ? '/control' :
+      '/' ;
+      
       loading.dismiss();
+
+      this.router.navigateByUrl(router, { replaceUrl: true });
+
       // if (user.user.displayName.match(/admin/) ) {
-      if (user.user.displayName == 'Admin123') {
-      this.router.navigateByUrl('/control', { replaceUrl: true });
-      } else {
-      this.router.navigateByUrl('/', { replaceUrl: true });
-    }
+      // if (user.user.displayName == 'Admin123') {
+      // this.router.navigateByUrl('/control', { replaceUrl: true });
+      // } else {
+      // this.router.navigateByUrl('/', { replaceUrl: true });
+      // }
+ 
     }, async err => {
       await loading.dismiss();
  
