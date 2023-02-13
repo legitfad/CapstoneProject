@@ -6,6 +6,7 @@ import { Expense } from '../models/expense';
 import { Personal } from '../models/personal';
 import { expenseUi, PersonalService, personalUi } from 'src/app/services/personal.service';
 import { AuthService } from '../services/auth.service';
+import { AddExpenseModalPage } from '../add-expense-modal/add-expense-modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -37,13 +38,10 @@ export class Tab1Page {
       }
     )
     this.calcTotalExpense();
-<<<<<<< Updated upstream
-=======
     this.checkSavings();
   }
 
   ngAfterContentInit(){
->>>>>>> Stashed changes
     this.calcSavings();
     this.checkSavings();
   }

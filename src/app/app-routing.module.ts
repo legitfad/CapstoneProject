@@ -100,6 +100,10 @@ const routes: Routes = [
     path: 'modal-cart',
     loadChildren: () => import('./modals/modal-cart/modal-cart.module').then( m => m.ModalCartPageModule)
   },
+  {
+    path: 'add-expense-modal',
+    loadChildren: () => import('./add-expense-modal/add-expense-modal.module').then( m => m.AddExpenseModalPageModule)
+  },
 
 
 ];
