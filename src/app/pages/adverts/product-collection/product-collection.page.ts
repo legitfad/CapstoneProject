@@ -30,10 +30,7 @@ export class ProductCollectionPage implements OnInit {
     //  }
     // )
 
-    this.advSvc.getProds().subscribe(res => {console.log(res); 
-      this.products = res.filter(product => product.brand === this.advertise.brand)
-      
-    })
+    
   }
 
   ngOnInit() {
@@ -43,6 +40,11 @@ export class ProductCollectionPage implements OnInit {
     console.log("AdvertID: " + this.advertId)
     this.advSvc.getAdsById(this.advertId).subscribe(res => {console.log("Advert Dtl: " + res)
       this.advertise = res
+
+    })
+    this.advSvc.getProds().subscribe(res => {console.log(res); 
+      this.products = res.filter(product => product.brand === this.advertise.brand)
+      
     })
 
     // this.advSvc.getAdsById(this.id).subscribe(res => {
