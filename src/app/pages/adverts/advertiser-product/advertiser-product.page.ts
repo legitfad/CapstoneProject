@@ -24,10 +24,7 @@ export class AdvertiserProductPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) { 
-    this.advSvc.getProds().subscribe(res => {console.log(res); 
-      this.products = res.filter(product => product.brand === this.advertise.brand)
-      
-    })
+  
   }
 
 
@@ -39,6 +36,12 @@ export class AdvertiserProductPage implements OnInit {
     this.advSvc.getAdsById(this.advertId).subscribe(res => {console.log("Advert Dtl: " + res)
       this.advertise = res
     })
+
+    this.advSvc.getProds().subscribe(res => {console.log(res); 
+      this.products = res.filter(product => product.brand === this.advertise.brand)
+      
+    })
+    
   }
 
 }
