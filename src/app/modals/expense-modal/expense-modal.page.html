@@ -13,7 +13,13 @@
 
     <ion-item>
       <ion-label position="stacked">Product Category</ion-label>
-      <ion-input [(ngModel)]="expense.expenseCategory"></ion-input>
+      <ion-select [(ngModel)]="expense.expenseCategory" placeholder="Select Category">
+        <ion-select-option value="Fashion">Fashion</ion-select-option>
+        <ion-select-option value="Electronics">Electronics</ion-select-option>
+        <ion-select-option value="Furniture">Furniture</ion-select-option>
+        <ion-select-option value="Apps & Games">Apps & Games</ion-select-option>
+        <ion-select-option value="Beauty / Health">Beauty / Health</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>

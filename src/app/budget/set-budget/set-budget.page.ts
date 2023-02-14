@@ -11,7 +11,7 @@ import { PersonalService, personalUi } from 'src/app/services/personal.service';
   styleUrls: ['./set-budget.page.scss'],
 })
 export class SetBudgetPage implements OnInit {
-  personal: personalUi = null;
+  personal: personalUi[] = [];
   personalId: string;
   setBudgetForm: FormGroup;
 
