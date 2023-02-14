@@ -57,6 +57,10 @@ export class LoginPage implements OnInit {
       (user.user.displayName === 'Admin123') ? '/control' :
       (user.user.displayName === 'Admin223') ? '/control' :
       (user.user.displayName === 'Admin323') ? '/control' :
+      (user.user.displayName === 'SKIMS') ? '/control' :
+      (user.user.displayName === 'Prada') ? '/control' :
+      (user.user.displayName === 'Miu Miu') ? '/control' :
+      (user.user.displayName === 'Stuart Weitzman') ? '/control' :
       '/' ;
       
       loading.dismiss();
