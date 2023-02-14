@@ -5,19 +5,16 @@
     </ion-buttons>
     <ion-title>My Chats</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      <ion-button (click)="startGroup()">
+        <ion-icon slot="icon-only" name="chatbubbles-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  
-
 </ion-header>
-<ion-button expand="block" (click)="startGroup()">
-  New Chat
-</ion-button>
+
 
 <ion-content>
+
 <ion-list>
   <ion-item *ngFor="let chat of chats" [routerLink]="[chat.id]">
     <ion-label>
@@ -25,4 +22,5 @@
     </ion-label>
   </ion-item>
 </ion-list>
+
 </ion-content>

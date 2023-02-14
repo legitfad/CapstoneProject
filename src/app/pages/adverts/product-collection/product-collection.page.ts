@@ -31,8 +31,8 @@ export class ProductCollectionPage implements OnInit {
     // )
 
     this.advSvc.getProds().subscribe(res => {console.log(res); 
-    this.products = res.filter(product => product.brand === this.advertise.brand)
-    
+      this.products = res.filter(product => product.brand === this.advertise.brand)
+      
     })
   }
 
