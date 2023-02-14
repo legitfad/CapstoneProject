@@ -47,6 +47,7 @@ export class Tab1Page {
     for (const q of this.expenses){
       this.totalExpense += Number(q.expensePrice || 0);
     }
+    this.checkSavings();
     return this.totalExpense;
   }
   
@@ -56,6 +57,7 @@ export class Tab1Page {
       this.budget = Number(q.personalBudget || 0);
     }
     this.savings = this.budget - this.totalExpense;
+    this.checkSavings();
     return this.savings
   }
 
@@ -77,48 +79,12 @@ export class Tab1Page {
   }
 
   async addExpense() {
-    const alert = await this.alertCtrl.create({
-      header: 'Add Expense',
-      inputs: [
-        {
-          name: 'expenseName',
-          placeholder: 'Name of Product',
-          type: 'text'
-        },
-        {
-          name: 'expenseCategory',
-          placeholder: 'Category of Product',
-          type: 'text'
-        },
-        {
-          name: 'expensePrice',
-          placeholder: 'Price of Product',
-          type: 'number'
-        },
-        {
-          name: 'expenseDate',
-          placeholder: 'Date of Expense',
-          type: 'date'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Add',
-          handler: res => {
-            this.personalService.addExpense({ 
-              expenseName: res.expenseName, 
-              expenseCategory: res.expenseCategory,
-              expensePrice: res.expensePrice,
-              expenseDate: res.expenseDate 
-            });
-          }
-        }
-      ]
-    });
-    await alert.present();
+    const modal = await this.modalController.create({
+      component: AddExpenseModalPage,
+      cssClass: 'modal-wrapper'
+      });
+    this.checkSavings();
+    return await modal.present();
   }
 
   async openExpense (expense: expenseUi) {
