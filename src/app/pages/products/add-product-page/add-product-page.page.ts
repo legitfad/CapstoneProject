@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
+import { ModalAddproductPage } from 'src/app/modals/modal-addproduct/modal-addproduct.page';
 import { ModalProductPage } from 'src/app/modals/modal-product/modal-product.page';
 import { productData, ProductService } from 'src/app/services/product.service';
 
@@ -81,6 +82,14 @@ export class AddProductPagePage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  async addproduct() {
+    const modal = await this.modalCtrl.create({
+      component: ModalAddproductPage,
+      cssClass: 'modal-wrapper'
+      });
+    return await modal.present();
   }
 
  

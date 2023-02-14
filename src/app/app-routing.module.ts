@@ -128,6 +128,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/adverts/advertiser-product/advertiser-product.module').then( m => m.AdvertiserProductPageModule)
   },
 
+  {
+    path: 'advertiser-product',
+    loadChildren: () => import('./pages/adverts/advertiser-product/advertiser-product.module').then( m => m.AdvertiserProductPageModule)
+  },
+  {
+    path: 'modal-addproduct',
+    loadChildren: () => import('./modals/modal-addproduct/modal-addproduct.module').then( m => m.ModalAddproductPageModule)
+  },
+
 
 
 ];
