@@ -31,6 +31,7 @@ const routes: Routes = [
         path: 'cart-page',
         loadChildren: () => import('../pages/cart/cart-page/cart-page.module').then(m => m.CartPagePageModule)
       },
+     
       {
         path: '',
         redirectTo: '/tabs/tab1',
