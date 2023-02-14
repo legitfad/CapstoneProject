@@ -135,7 +135,11 @@ const routes: Routes = [
   {
     path: 'modal-addproduct',
     loadChildren: () => import('./modals/modal-addproduct/modal-addproduct.module').then( m => m.ModalAddproductPageModule)
+  },  {
+    path: 'buffer',
+    loadChildren: () => import('./authentication/buffer/buffer.module').then( m => m.BufferPageModule)
   },
+
 
 
 

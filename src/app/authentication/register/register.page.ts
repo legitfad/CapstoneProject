@@ -35,15 +35,15 @@ export class RegisterPage implements OnInit {
     await loading.present();
  
     this.authSvc.signup(this.credentialsForm.value).then(user => {
-      let router = (user.user.displayName === 'admin') ? '/control' :
-      (user.user.displayName === 'Admin123') ? '/control' :
-      (user.user.displayName === 'Admin223') ? '/control' :
-      (user.user.displayName === 'Admin323') ? '/control' :
-      (user.user.displayName === 'SKIMS') ? '/control' :
-      (user.user.displayName === 'Prada') ? '/control' :
-      (user.user.displayName === 'Miu Miu') ? '/control' :
-      (user.user.displayName === 'Stuart Weitzman') ? '/control' :
-      (user.user.displayName === 'Balenciaga') ? '/control' :
+      let router = (user.user.displayName === 'admin') ? '/buffer' :
+      (user.user.displayName === 'Admin123') ? '/buffer' :
+      (user.user.displayName === 'Admin223') ? '/buffer' :
+      (user.user.displayName === 'Admin323') ? '/buffer' :
+      (user.user.displayName === 'SKIMS') ? '/buffer' :
+      (user.user.displayName === 'Prada') ? '/buffer' :
+      (user.user.displayName === 'Miu Miu') ? '/buffer' :
+      (user.user.displayName === 'Stuart Weitzman') ? '/buffer' :
+      (user.user.displayName === 'Balenciaga') ? '/buffer' :
       '/' ;
       
       loading.dismiss();
