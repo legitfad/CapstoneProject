@@ -6,6 +6,7 @@ import { Expense } from '../models/expense';
 import { Personal } from '../models/personal';
 import { expenseUi, PersonalService, personalUi } from 'src/app/services/personal.service';
 import { AuthService } from '../services/auth.service';
+import { AddExpenseModalPage } from '../add-expense-modal/add-expense-modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -36,6 +37,9 @@ export class Tab1Page {
       }
     )
     this.calcTotalExpense();
+  }
+
+  ngAfterContentInit(){
     this.calcSavings();
   }
 
@@ -65,48 +69,11 @@ export class Tab1Page {
   }
 
   async addExpense() {
-    const alert = await this.alertCtrl.create({
-      header: 'Add Expense',
-      inputs: [
-        {
-          name: 'expenseName',
-          placeholder: 'Name of Product',
-          type: 'text'
-        },
-        {
-          name: 'expenseCategory',
-          placeholder: 'Category of Product',
-          type: 'text'
-        },
-        {
-          name: 'expensePrice',
-          placeholder: 'Price of Product',
-          type: 'number'
-        },
-        {
-          name: 'expenseDate',
-          placeholder: 'Date of Expense',
-          type: 'date'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Add',
-          handler: res => {
-            this.personalService.addExpense({ 
-              expenseName: res.expenseName, 
-              expenseCategory: res.expenseCategory,
-              expensePrice: res.expensePrice,
-              expenseDate: res.expenseDate 
-            });
-          }
-        }
-      ]
-    });
-    await alert.present();
+    const modal = await this.modalController.create({
+      component: AddExpenseModalPage,
+      cssClass: 'modal-wrapper'
+      });
+      return await modal.present();
   }
 
   async openExpense (expense: expenseUi) {

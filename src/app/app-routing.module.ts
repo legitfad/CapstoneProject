@@ -88,7 +88,26 @@ const routes: Routes = [
   {
     path: 'control',
     loadChildren: () => import('./admin/control/control.module').then( m => m.ControlPageModule)
-  },  {
+  },
+  {
+    path: 'add-expense-modal',
+    loadChildren: () => import('./add-expense-modal/add-expense-modal.module').then( m => m.AddExpenseModalPageModule)
+  },
+  {
+    path: 'tabs/tab2/:advertid',
+    loadChildren: () => import('./pages/adverts/product-collection/product-collection.module').then( m => m.ProductCollectionPageModule)
+  },
+  {
+    path: 'add-advert-product',
+    loadChildren: () => import('./pages/adverts/add-advert-product/add-advert-product.module').then( m => m.AddAdvertProductPageModule)
+  },
+  {
+    path: 'reward-add',
+    loadChildren: () => import('./pages/reward-add/reward-add.module').then( m => m.RewardAddPageModule)
+  },
+
+
+   {
     path: 'cart-page',
     loadChildren: () => import('./pages/cart/cart-page/cart-page.module').then( m => m.CartPagePageModule)
   },

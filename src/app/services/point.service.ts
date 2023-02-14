@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 export interface pointUI {
   id?: string;
   point: string;
-  pointDate: IonDatetime;
+  pointDate: string;
   purpose: string;
-  personalId: string;
-  rewardId: string;
+  personalID: string;
+  rewardID: string;
 }
 
 @Injectable({
@@ -29,4 +29,10 @@ export class PointService {
     const PointDocRef = doc(this.firestore, `points/${id}`);
     return docData(PointDocRef, { idField: 'id' }) as Observable<pointUI>;
   }
+
+  redeemReward(point: pointUI) {
+    const PointDocRef = collection(this.firestore, 'points');
+    return addDoc(PointDocRef, point);
+  }
+
 }
