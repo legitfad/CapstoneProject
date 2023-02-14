@@ -23,14 +23,13 @@
         <h1>{{personal.personalName}}</h1>
         <h2>Budget Set: {{personal.personalBudget}}</h2>
         <h2>Reset Date: {{personal.personalResetDate | date: "dd-MM-yyyy"}}</h2>
-        <h2>Savings: {{calcSavings()}}</h2>
       </ion-label>
-      <ion-button expand="block" color="secondary" type="submit" (click)="set()">Set Budget</ion-button>
+      <ion-button expand="block" color="secondary" type="submit" (click)="set()">Update Budget</ion-button>
     </ion-item>
   </ion-list>
 
   <ion-content class="ion-padding">
-    <ion-button id="open-modal-expense" expand="block">Personal Expenses</ion-button>
+    <ion-button id="open-modal-expense" (click)="calcTotalExpense()" (click)="checkSavings()" expand="block">Personal Expenses</ion-button>
     <ion-modal
     trigger="open-modal-expense"
     [initialBreakpoint]="0.25"
@@ -41,9 +40,15 @@
       <ion-content class="ion-padding">
         <div class="ion-margin-top">
           <ion-toolbar>
-            <ion-title slot="start">Total Expenses: {{calcTotalExpense()}}</ion-title>
+            <ion-title slot="start" color="success" *ngIf="savingStatus == false">
+              Total Expenses: {{calcTotalExpense()}}
+            </ion-title>
+            <ion-title slot="start" color="danger" *ngIf="savingStatus == true">
+              Total Expenses: {{calcTotalExpense()}}
+            </ion-title>
             <ion-button slot="end" color="primary" (click)="addExpense()">Add</ion-button>
           </ion-toolbar>
+          <ion-title>Savings: {{calcSavings()}}</ion-title>
         </div>
         <ion-list>
           <ion-item *ngFor="let expense of expenses" (click)="openExpense(expense)">
