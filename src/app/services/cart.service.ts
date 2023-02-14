@@ -68,7 +68,7 @@ export class CartService {
       return updateDoc(cartDocumentRef, { 
         productName: cart.productName,
         productPrice: cart.productPrice, 
-        quantity: cart.Quantity
+        Quantity: cart.Quantity
       });
     }
 

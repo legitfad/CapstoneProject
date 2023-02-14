@@ -33,6 +33,7 @@ export class ModalCartPage implements OnInit {
       message: 'Cart updated!.',
       duration: 50
     });
+    
     toast.present();
 
   }
