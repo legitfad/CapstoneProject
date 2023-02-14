@@ -49,7 +49,4 @@ export class AdvertiserPagePage implements OnInit {
     this.authService.logout();
   }
  
- 
-
-
 }

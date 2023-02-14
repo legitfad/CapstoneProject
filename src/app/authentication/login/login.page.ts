@@ -31,9 +31,23 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingCtrl.create();
     await loading.present();
  
-    this.authSvc.signup(this.credentialsForm.value).then(_ => {
+    this.authSvc.signup(this.credentialsForm.value).then(user => {
+      
+      let router = (user.user.displayName === 'admin') ? '/control' :
+      (user.user.displayName === 'Admin123') ? '/control' :
+      (user.user.displayName === 'Admin223') ? '/control' :
+      (user.user.displayName === 'Admin323') ? '/control' :
+      (user.user.displayName === 'SKIMS') ? '/control' :
+      (user.user.displayName === 'Prada') ? '/control' :
+      (user.user.displayName === 'Miu Miu') ? '/control' :
+      (user.user.displayName === 'Stuart Weitzman') ? '/control' :
+      (user.user.displayName === 'Balenciaga') ? '/control' :
+      '/' ;
+      
       loading.dismiss();
-      this.router.navigateByUrl('/', { replaceUrl: true });
+
+      this.router.navigateByUrl(router, { replaceUrl: true });
+      
     }, async err => {
       await loading.dismiss();
  
@@ -61,6 +75,7 @@ export class LoginPage implements OnInit {
       (user.user.displayName === 'Prada') ? '/control' :
       (user.user.displayName === 'Miu Miu') ? '/control' :
       (user.user.displayName === 'Stuart Weitzman') ? '/control' :
+      (user.user.displayName === 'Balenciaga') ? '/control' :
       '/' ;
       
       loading.dismiss();
