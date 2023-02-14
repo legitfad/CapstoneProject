@@ -54,4 +54,9 @@ export class AdvDetailPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+  
+  toProd() {
+    this.router.navigateByUrl('/advertiser-product/' + this.id)
+  }
+
 }

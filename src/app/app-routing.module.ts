@@ -122,8 +122,9 @@ const routes: Routes = [
   {
     path: 'add-expense-modal',
     loadChildren: () => import('./add-expense-modal/add-expense-modal.module').then( m => m.AddExpenseModalPageModule)
-  },  {
-    path: 'advertiser-product',
+  },
+  {
+    path: 'advertiser-product/:advertid',
     loadChildren: () => import('./pages/adverts/advertiser-product/advertiser-product.module').then( m => m.AdvertiserProductPageModule)
   },
 
